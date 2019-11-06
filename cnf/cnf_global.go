@@ -10,7 +10,8 @@
 package cnf
 
 import (
-	"os"
+	jbin "github.com/yingzhuo/jing/bin"
+	jos "github.com/yingzhuo/jing/os"
 )
 
 // 安静模式
@@ -22,10 +23,12 @@ var GlobalDebugMode bool
 // 当前目录
 var GlobalPWD string
 
+// app安装目录
+var GlobalBinDir string
+
 func init() {
 	GlobalQuietMode = false
 	GlobalDebugMode = false
-	if GlobalPWD, _ = os.Getwd(); GlobalPWD == "" {
-		GlobalPWD = "."
-	}
+	GlobalPWD = jos.GetPWD()
+	GlobalBinDir = jbin.GetBinaryDir()
 }

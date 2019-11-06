@@ -89,7 +89,6 @@ func main() {
 	app.Commands = []*cli.Command{
 		cmd.NewCommandFilegen(),
 		cmd.NewCommandWait(),
-		cmd.NewCommandPing(),
 		cmd.NewCommandSleep(),
 	}
 

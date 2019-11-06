@@ -33,6 +33,7 @@ func ActionFilegen(c *cli.Context) {
 	initConfig()
 
 	logrus.Debugf("command: \"%v\"", c.Name())
+	logrus.Debugf("bin dir: \"%v\"", cnf.GlobalBinDir)
 	logrus.Debugf("pwd: \"%v\"", cnf.GlobalPWD)
 	logrus.Debugf("template file: \"%v\"", cnf.FilegenTemplateFile)
 	logrus.Debugf("json file: \"%v\"", cnf.FilegenJsonFile)

@@ -16,7 +16,6 @@ AUTHORS:
 COMMANDS:
    filegen   generate file using template
    wait      wait until tcp reachable or timeout
-   ping      test if tcp is reachable
    sleep     make current thread sleep
 
 GLOBALS OPTIONS:
@@ -76,7 +75,6 @@ make install
 
 * [filegen](./.github/filegen.md)
 * [wait](./.github/wait.md)
-* [ping](./.github/ping.md)
 * [sleep](./.github/sleep.md)
 
 ### Contributing

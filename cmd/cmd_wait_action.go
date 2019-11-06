@@ -31,6 +31,7 @@ var ch chan string
 func ActionWait(c *cli.Context) {
 
 	logrus.Debugf("command: \"%v\"", c.Name())
+	logrus.Debugf("bin dir: \"%v\"", cnf.GlobalBinDir)
 	logrus.Debugf("pwd: \"%v\"", cnf.GlobalPWD)
 
 	if c.NArg() != 0 {

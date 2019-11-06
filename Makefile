@@ -1,12 +1,12 @@
 TIMESTAMP  	:= $(shell /bin/date "+%F %T")
-VERSION		:= 1.0.0
+VERSION		:= 1.0.1
 NAME		:= docktool
 LDFLAGS		:= -s -w \
 			   -X 'main.BuildVersion=$(VERSION)' \
 			   -X 'main.BuildGitBranch=$(shell git describe --all)' \
 			   -X 'main.BuildGitRev=$(shell git rev-list --count HEAD)' \
 			   -X 'main.BuildGitCommit=$(shell git rev-parse HEAD)' \
-			   -X 'main.BuildDate=$(shell /bin/date "+%F %T +0800")'
+			   -X 'main.BuildDate=$(shell /bin/date "+%F %T +08:00")'
 
 fmt:
 	@go fmt ./...

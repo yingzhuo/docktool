@@ -21,6 +21,7 @@ import (
 func ActionSleep(c *cli.Context) {
 
 	logrus.Debugf("command: \"%v\"", c.Name())
+	logrus.Debugf("bin dir: \"%v\"", cnf.GlobalBinDir)
 	logrus.Debugf("pwd: \"%v\"", cnf.GlobalPWD)
 
 	switch c.NArg() {

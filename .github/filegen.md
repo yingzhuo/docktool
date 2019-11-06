@@ -126,4 +126,4 @@ In the same way, will find default files.
 
 ### Golang template funcs
 
-See [fn package](https://github.com/yingzhuo/docktool/tree/master/fn).
+See [fn.go](https://github.com/yingzhuo/docktool/tree/master/fn/fn.go).
