@@ -16,7 +16,18 @@ import (
 )
 
 func toString(n interface{}) string {
-	return fmt.Sprintf("%v", n)
+	switch s := n.(type) {
+	case string:
+		return s
+	case fmt.Stringer:
+		return s.String()
+	case fmt.GoStringer:
+		return s.GoString()
+	case []rune:
+		return string(s)
+	default:
+		return fmt.Sprintf("%v", s)
+	}
 }
 
 func toFloat64(input interface{}) float64 {

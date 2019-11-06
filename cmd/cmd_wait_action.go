@@ -17,24 +17,21 @@ import (
 	"time"
 
 	"github.com/sirupsen/logrus"
-	"github.com/subchen/go-cli"
 	"github.com/yingzhuo/docktool/cnf"
 	"github.com/yingzhuo/docktool/value"
+	"github.com/yingzhuo/go-cli/v2"
 	jstr "github.com/yingzhuo/jing/str"
 	jtcp "github.com/yingzhuo/jing/tcp"
 )
 
 // 结果集合
 var collection = newWaitingResultCollection()
-var queue chan string
+var ch chan string
 
 func ActionWait(c *cli.Context) {
 
-	cnf.InitGlobalConfig()
-
 	logrus.Debugf("command: \"%v\"", c.Name())
 	logrus.Debugf("pwd: \"%v\"", cnf.GlobalPWD)
-	logrus.Debugf("binary dir: \"%v\"", cnf.GlobalBinaryDir)
 
 	if c.NArg() != 0 {
 		panic("too many parameters for sub-command wait")
@@ -43,7 +40,7 @@ func ActionWait(c *cli.Context) {
 	list := getList()
 	count := len(list)
 	timeoutFlag := false
-	queue = make(chan string, count)
+	ch = make(chan string, count)
 
 	for _, addr := range list {
 		logrus.Debugf("waiting: \"%v\"", addr)
@@ -56,7 +53,7 @@ func ActionWait(c *cli.Context) {
 	s1 := time.Now().UnixNano()
 	for {
 		select {
-		case threadId := <-queue:
+		case threadId := <-ch:
 			result := collection.get(threadId)
 			Println(result.String())
 
@@ -78,7 +75,7 @@ t1:
 		logrus.Debugf("cost: %v", cost)
 	}
 
-	close(queue)
+	close(ch)
 }
 
 const (
@@ -122,13 +119,13 @@ func doWait(threadId string, addr string, timeoutFlag *bool) {
 		if jtcp.IsReachable(addr) {
 			result.status = ok
 			collection.add(result)
-			queue <- threadId
+			ch <- threadId
 			return
 		} else {
 			if *timeoutFlag {
 				result.status = timeout
 				collection.add(result)
-				queue <- threadId
+				ch <- threadId
 				return
 			} else {
 				nap()

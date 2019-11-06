@@ -10,7 +10,7 @@
 package cmd
 
 import (
-	"github.com/subchen/go-cli"
+	"github.com/yingzhuo/go-cli/v2"
 )
 
 func NewCommandSleep() *cli.Command {

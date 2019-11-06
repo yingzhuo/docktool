@@ -14,18 +14,15 @@ import (
 	"strings"
 
 	"github.com/sirupsen/logrus"
-	"github.com/subchen/go-cli"
 	"github.com/yingzhuo/docktool/cnf"
+	"github.com/yingzhuo/go-cli/v2"
 	"github.com/yingzhuo/jing/tcp"
 )
 
 func ActionPing(c *cli.Context) {
 
-	cnf.InitGlobalConfig()
-
 	logrus.Debugf("command: \"%v\"", c.Name())
 	logrus.Debugf("pwd: \"%v\"", cnf.GlobalPWD)
-	logrus.Debugf("binary dir: \"%v\"", cnf.GlobalBinaryDir)
 
 	eff := make([]string, 0)
 	dict := make(map[string]bool)

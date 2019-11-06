@@ -20,9 +20,9 @@ import (
 
 	"github.com/BurntSushi/toml"
 	"github.com/sirupsen/logrus"
-	"github.com/subchen/go-cli"
 	"github.com/yingzhuo/docktool/cnf"
 	"github.com/yingzhuo/docktool/fn"
+	"github.com/yingzhuo/go-cli/v2"
 	jfile "github.com/yingzhuo/jing/file"
 	jio "github.com/yingzhuo/jing/io"
 	"gopkg.in/yaml.v2"
@@ -30,13 +30,10 @@ import (
 
 func ActionFilegen(c *cli.Context) {
 
-	cnf.InitGlobalConfig()
-
 	initConfig()
 
 	logrus.Debugf("command: \"%v\"", c.Name())
 	logrus.Debugf("pwd: \"%v\"", cnf.GlobalPWD)
-	logrus.Debugf("binary dir: \"%v\"", cnf.GlobalBinaryDir)
 	logrus.Debugf("template file: \"%v\"", cnf.FilegenTemplateFile)
 	logrus.Debugf("json file: \"%v\"", cnf.FilegenJsonFile)
 	logrus.Debugf("yaml file: \"%v\"", cnf.FilegenYamlFile)

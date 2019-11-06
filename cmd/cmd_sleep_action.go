@@ -14,16 +14,14 @@ import (
 	"time"
 
 	"github.com/sirupsen/logrus"
-	"github.com/subchen/go-cli"
 	"github.com/yingzhuo/docktool/cnf"
+	"github.com/yingzhuo/go-cli/v2"
 )
 
 func ActionSleep(c *cli.Context) {
-	cnf.InitGlobalConfig()
 
 	logrus.Debugf("command: \"%v\"", c.Name())
 	logrus.Debugf("pwd: \"%v\"", cnf.GlobalPWD)
-	logrus.Debugf("binary dir: \"%v\"", cnf.GlobalBinaryDir)
 
 	switch c.NArg() {
 	case 0:

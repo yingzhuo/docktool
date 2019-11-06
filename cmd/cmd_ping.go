@@ -10,8 +10,8 @@
 package cmd
 
 import (
-	"github.com/subchen/go-cli"
 	"github.com/yingzhuo/docktool/cnf"
+	"github.com/yingzhuo/go-cli/v2"
 )
 
 func NewCommandPing() *cli.Command {

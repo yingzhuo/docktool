@@ -16,9 +16,9 @@ import (
 	"time"
 
 	"github.com/sirupsen/logrus"
-	"github.com/subchen/go-cli"
 	"github.com/yingzhuo/docktool/cmd"
 	"github.com/yingzhuo/docktool/cnf"
+	"github.com/yingzhuo/go-cli/v2"
 )
 
 // 构建信息
@@ -31,6 +31,7 @@ var (
 )
 
 func main() {
+
 	// 基本信息
 	app := cli.NewApp()
 	app.Name = "docktool"
@@ -50,14 +51,17 @@ func main() {
 	// 全局Flag
 	app.Flags = []*cli.Flag{
 		{
-			Name:   "q, quiet",
-			Usage:  "quiet mode",
-			IsBool: true,
-			Value:  &cnf.GlobalQuietMode,
+			Name:          "q, quiet",
+			Usage:         "quiet mode",
+			DefValue:      "false",
+			NoOptDefValue: "true",
+			IsBool:        true,
+			Value:         &cnf.GlobalQuietMode,
 		}, {
 			Name:          "D, debug",
 			Usage:         "debug mode",
-			NoOptDefValue: "debug",
+			DefValue:      "false",
+			NoOptDefValue: "true",
 			IsBool:        true,
 			Hidden:        true,
 			Value:         &cnf.GlobalDebugMode,
@@ -87,6 +91,13 @@ func main() {
 		cmd.NewCommandWait(),
 		cmd.NewCommandPing(),
 		cmd.NewCommandSleep(),
+	}
+
+	// 初始化钩子
+	app.InitHook = func() {
+		if cnf.GlobalDebugMode {
+			logrus.SetLevel(logrus.DebugLevel)
+		}
 	}
 
 	app.Run(os.Args)

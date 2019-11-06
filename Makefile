@@ -10,6 +10,7 @@ LDFLAGS		:= -s -w \
 
 fmt:
 	@go fmt ./...
+	@go mod tidy
 
 clean:
 	@rm -rf $(CURDIR)/_bin &> /dev/null
