@@ -13,6 +13,7 @@ OPTIONS:
    -e, --environment-prefix <prefix>   environment name prefix of waiting list (default: WAIT_)
    -w, --wait <addr>                   addr to wait, can be passed multiple times
    -t, --timeout <time>                timeout
+   -s, --shell <shell>                 run shell after waiting
        --logic <logic>                 logic of testing (ALL | ANY) (default: ALL)
        --help                          print this usage
 
@@ -25,6 +26,7 @@ EXAMPLES:
 
 SEE ALSO:
    https://github.com/yingzhuo/docktool/tree/master/.github/wait.md
+
 
 ```
 

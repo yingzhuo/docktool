@@ -20,6 +20,7 @@ import (
 	"github.com/yingzhuo/docktool/cnf"
 	"github.com/yingzhuo/docktool/value"
 	"github.com/yingzhuo/go-cli/v2"
+	jcmd "github.com/yingzhuo/jing/cmd"
 	jstr "github.com/yingzhuo/jing/str"
 	jtcp "github.com/yingzhuo/jing/tcp"
 )
@@ -77,6 +78,23 @@ t1:
 	}
 
 	close(ch)
+
+	ok := true
+
+	for _, it := range collection.dict {
+		if it.status == timeout {
+			ok = false
+			break
+		}
+	}
+
+	if ok && cnf.WaitShell != "" {
+		if output, err := jcmd.ShellOutput(cnf.WaitShell); err != nil {
+			panic(err)
+		} else {
+			fmt.Println(output)
+		}
+	}
 }
 
 const (

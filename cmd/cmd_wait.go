@@ -47,6 +47,11 @@ WAIT_MYSQL=localhost:3306 WAIT_REDIS=localhost:6379 docktool wait`
 				Value:       &cnf.WaitTimeout,
 				Placeholder: "<time>",
 			}, {
+				Name:        "s, shell",
+				Usage:       "run shell after waiting",
+				Value:       &cnf.WaitShell,
+				Placeholder: "<shell>",
+			}, {
 				Name:        "logic",
 				Usage:       "logic of testing (ALL | ANY)",
 				Placeholder: "<logic>",

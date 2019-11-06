@@ -14,6 +14,7 @@ import "github.com/yingzhuo/docktool/value"
 var WaitEnvPrefix string
 var WaitList value.WaitList
 var WaitTimeout value.WaitTimeout
+var WaitShell string
 var WaitLogic value.WaitLogic
 
 func init() {
