@@ -20,16 +20,15 @@ import (
 	"github.com/subchen/go-cli"
 	"github.com/yingzhuo/docktool/cnf"
 	"github.com/yingzhuo/docktool/value"
+	jstr "github.com/yingzhuo/jing/str"
 	jtcp "github.com/yingzhuo/jing/tcp"
 )
 
 // 结果集合
 var collection = newWaitingResultCollection()
-var queue chan int
+var queue chan string
 
 func ActionWait(c *cli.Context) {
-
-	defer close(queue)
 
 	cnf.InitGlobalConfig()
 
@@ -44,11 +43,12 @@ func ActionWait(c *cli.Context) {
 	list := getList()
 	count := len(list)
 	timeoutFlag := false
-	queue = make(chan int, count)
+	queue = make(chan string, count)
 
-	for threadId, addr := range list {
+	for _, addr := range list {
 		logrus.Debugf("waiting: \"%v\"", addr)
-		go doWait(threadId, addr, &timeoutFlag)
+
+		go doWait(jstr.NewUUID36(), addr, &timeoutFlag) // uuid as thread id
 	}
 
 	go doTimeout(cnf.WaitTimeout.Get(), &timeoutFlag)
@@ -77,6 +77,8 @@ t1:
 		cost := time.Duration(s2 - s1)
 		logrus.Debugf("cost: %v", cost)
 	}
+
+	close(queue)
 }
 
 const (
@@ -109,21 +111,24 @@ func getList() value.WaitList {
 	return ret
 }
 
-func doWait(threadId int, addr string, timeoutFlag *bool) {
+func doWait(threadId string, addr string, timeoutFlag *bool) {
 	result := newWaitingResult(threadId, addr)
 
 	defer func() {
-		collection.add(result)
-		queue <- threadId
+		recover()
 	}()
 
 	for {
 		if jtcp.IsReachable(addr) {
 			result.status = ok
+			collection.add(result)
+			queue <- threadId
 			return
 		} else {
 			if *timeoutFlag {
 				result.status = timeout
+				collection.add(result)
+				queue <- threadId
 				return
 			} else {
 				nap()
