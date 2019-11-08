@@ -16,6 +16,7 @@ import (
 	"github.com/sirupsen/logrus"
 	"github.com/yingzhuo/docktool/cnf"
 	"github.com/yingzhuo/go-cli/v2"
+	jtime "github.com/yingzhuo/jing/time"
 )
 
 func ActionSleep(c *cli.Context) {
@@ -26,7 +27,6 @@ func ActionSleep(c *cli.Context) {
 
 	switch c.NArg() {
 	case 0:
-		logrus.Debugf("sleep forever")
 		sleepForever()
 	case 1:
 		sleep(c.Arg(0))
@@ -37,20 +37,22 @@ func ActionSleep(c *cli.Context) {
 
 func sleepForever() {
 	for {
+		logrus.Debugf("sleep forever")
 		time.Sleep(time.Minute)
 	}
 }
 
 func sleep(duration string) {
-	if d, err := time.ParseDuration(duration); err != nil {
+	d, err := jtime.ParseDurationWildly(duration)
+
+	if err != nil {
 		panic(fmt.Sprintf("can't parse duration \"%s\"", duration))
+	}
+
+	if d <= 0 {
+		sleepForever()
 	} else {
-		if d <= 0 {
-			logrus.Debugf("sleep forever")
-			sleepForever()
-		} else {
-			logrus.Debugf("sleep duration: %v", d)
-			time.Sleep(d)
-		}
+		logrus.Debugf("sleep until: %v", d)
+		time.Sleep(d)
 	}
 }

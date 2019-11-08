@@ -93,7 +93,7 @@ func main() {
 	}
 
 	// 初始化钩子
-	app.InitHook = func() {
+	app.OnAppInitialized = func(c *cli.Context) {
 		if cnf.GlobalDebugMode {
 			logrus.SetLevel(logrus.DebugLevel)
 		}

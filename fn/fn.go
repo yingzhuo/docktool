@@ -10,17 +10,13 @@
 package fn
 
 import (
-	"crypto/md5"
-	"crypto/sha1"
-	"crypto/sha256"
-	"crypto/sha512"
-	"encoding/base64"
 	"fmt"
-	"io"
 	"math/rand"
 	"reflect"
 	"strings"
 	"text/template"
+
+	jstr "github.com/yingzhuo/jing/str"
 )
 
 func TxtFuncMap() template.FuncMap {
@@ -69,27 +65,29 @@ func TxtFuncMap() template.FuncMap {
 	f["singleQuote"] = singleQuote
 
 	// randXxx
-	f["randAlphabetic"] = randAlphabetic
-	f["randNumeric"] = randNumeric
-	f["randAlphanumeric"] = randAlphanumeric
-	f["randString"] = randString
-	f["randBool"] = randBool
+	f["randAlphabetic"] = jstr.RandAlphabetic
+	f["randNumeric"] = jstr.RandNumeric
+	f["randAlphanumeric"] = jstr.RandAlphanumeric
+	f["randBool"] = func() bool {
+		return rand.Intn(1000)%2 == 0
+	}
 
 	// base64
-	f["base64Enc"] = base64URLEncode
-	f["base64Dec"] = base64URLDecode
+	f["base64Enc"] = jstr.Base64URLEncode
+	f["base64Dec"] = jstr.Base64URLDecode
 
 	// uuid
-	f["uuid"] = uuid36
-	f["uuid36"] = uuid36
-	f["uuid32"] = uuid32
+	f["uuid"] = jstr.NewUUID36
+	f["uuid36"] = jstr.NewUUID36
+	f["uuid32"] = jstr.NewUUID32
 
 	// crypto
-	f["md5"] = _md5
-	f["sha1"] = _sha1
-	f["sha256"] = _sha256
-	f["sha384"] = _sha384
-	f["sha512"] = _sha512
+	f["md4"] = jstr.MD4
+	f["md5"] = jstr.MD5
+	f["sha1"] = jstr.SHA1
+	f["sha256"] = jstr.SHA256
+	f["sha384"] = jstr.SHA384
+	f["sha512"] = jstr.SHA512
 
 	return f
 }
@@ -165,94 +163,4 @@ func cat(s string, ss ...string) string {
 		sb.WriteString(it)
 	}
 	return sb.String()
-}
-
-func base64URLEncode(s string) string {
-	input := []byte(s)
-	return base64.URLEncoding.EncodeToString(input)
-}
-
-func base64URLDecode(s string) string {
-	data, _ := base64.URLEncoding.DecodeString(s)
-	return string(data)
-}
-
-func uuid36() string {
-	b := make([]byte, 16)
-	rand.Read(b)
-	return fmt.Sprintf("%x-%x-%x-%x-%x", b[0:4], b[4:6], b[6:8], b[8:10], b[10:])
-}
-
-func uuid32() string {
-	b := make([]byte, 16)
-	rand.Read(b)
-	return fmt.Sprintf("%x%x%x%x%x", b[0:4], b[4:6], b[6:8], b[8:10], b[10:])
-}
-
-func _md5(s string) string {
-	h := md5.New()
-	_, _ = io.WriteString(h, s)
-	return fmt.Sprintf("%x", h.Sum(nil))
-}
-
-func _sha1(s string) string {
-	h := sha1.New()
-	_, _ = io.WriteString(h, s)
-	return fmt.Sprintf("%x", h.Sum(nil))
-}
-
-func _sha256(s string) string {
-	h := sha256.New()
-	_, _ = io.WriteString(h, s)
-	return fmt.Sprintf("%x", h.Sum(nil))
-}
-
-func _sha384(s string) string {
-	h := sha512.New384()
-	_, _ = io.WriteString(h, s)
-	return fmt.Sprintf("%x", h.Sum(nil))
-}
-
-func _sha512(s string) string {
-	h := sha512.New()
-	_, _ = io.WriteString(h, s)
-	return fmt.Sprintf("%x", h.Sum(nil))
-}
-
-var (
-	alphanumeric = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-	alphabetic   = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-	numeric      = "0123456789"
-)
-
-const (
-	letterIdxBits = 6                    // 6 bits to represent a letter index
-	letterIdxMask = 1<<letterIdxBits - 1 // All 1-bits, as many as letterIdxBits
-)
-
-func randAlphabetic(n int) string {
-	return randString(n, alphabetic)
-}
-
-func randNumeric(n int) string {
-	return randString(n, numeric)
-}
-
-func randAlphanumeric(n int) string {
-	return randString(n, alphanumeric)
-}
-
-func randString(n int, charset string) string {
-	b := make([]byte, n)
-	for i := 0; i < n; {
-		if idx := int(rand.Int63() & letterIdxMask); idx < len(charset) {
-			b[i] = charset[idx]
-			i++
-		}
-	}
-	return string(b)
-}
-
-func randBool() bool {
-	return rand.Intn(1000)%2 == 0
 }
