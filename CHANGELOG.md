@@ -1,3 +1,6 @@
+## 1.0.4
+- **[DELETE]** Remove debug mode
+
 ## 1.0.3
 - **[NEW]** Support `docktool sleep '2019-11-08 12:00:00 +08:00'`
 

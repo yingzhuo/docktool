@@ -16,7 +16,6 @@ import (
 	"sync"
 	"time"
 
-	"github.com/sirupsen/logrus"
 	"github.com/yingzhuo/docktool/cnf"
 	"github.com/yingzhuo/docktool/value"
 	"github.com/yingzhuo/go-cli/v2"
@@ -31,10 +30,6 @@ var ch chan string
 
 func ActionWait(c *cli.Context) {
 
-	logrus.Debugf("command: \"%v\"", c.Name())
-	logrus.Debugf("bin dir: \"%v\"", cnf.GlobalBinDir)
-	logrus.Debugf("pwd: \"%v\"", cnf.GlobalPWD)
-
 	if c.NArg() != 0 {
 		panic("too many parameters for sub-command wait")
 	}
@@ -45,14 +40,11 @@ func ActionWait(c *cli.Context) {
 	ch = make(chan string, count)
 
 	for _, addr := range list {
-		logrus.Debugf("waiting: \"%v\"", addr)
-
 		go doWait(jstr.NewUUID36(), addr, &timeoutFlag) // uuid as thread id
 	}
 
 	go doTimeout(cnf.WaitTimeout.Get(), &timeoutFlag)
 
-	s1 := time.Now().UnixNano()
 	for {
 		select {
 		case threadId := <-ch:
@@ -70,12 +62,6 @@ func ActionWait(c *cli.Context) {
 	}
 
 t1:
-
-	if cnf.GlobalDebugMode {
-		s2 := time.Now().UnixNano()
-		cost := time.Duration(s2 - s1)
-		logrus.Debugf("cost: %v", cost)
-	}
 
 	close(ch)
 

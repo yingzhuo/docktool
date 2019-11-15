@@ -13,17 +13,11 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/sirupsen/logrus"
-	"github.com/yingzhuo/docktool/cnf"
 	"github.com/yingzhuo/go-cli/v2"
 	jtime "github.com/yingzhuo/jing/time"
 )
 
 func ActionSleep(c *cli.Context) {
-
-	logrus.Debugf("command: \"%v\"", c.Name())
-	logrus.Debugf("bin dir: \"%v\"", cnf.GlobalBinDir)
-	logrus.Debugf("pwd: \"%v\"", cnf.GlobalPWD)
 
 	switch c.NArg() {
 	case 0:
@@ -37,7 +31,6 @@ func ActionSleep(c *cli.Context) {
 
 func sleepForever() {
 	for {
-		logrus.Debugf("sleep forever")
 		time.Sleep(time.Minute)
 	}
 }
@@ -52,7 +45,6 @@ func sleep(duration string) {
 	if d <= 0 {
 		sleepForever()
 	} else {
-		logrus.Debugf("sleep until: %v", d)
 		time.Sleep(d)
 	}
 }

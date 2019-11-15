@@ -15,7 +15,6 @@ import (
 	"strings"
 	"time"
 
-	"github.com/sirupsen/logrus"
 	"github.com/yingzhuo/docktool/cmd"
 	"github.com/yingzhuo/docktool/cnf"
 	"github.com/yingzhuo/go-cli/v2"
@@ -35,9 +34,9 @@ func main() {
 	// 基本信息
 	app := cli.NewApp()
 	app.Name = "docktool"
-	app.Usage = "tool set for docker container"
+	app.Usage = "tools for docker container"
 	app.Version = BuildVersion
-	app.Authors = `应卓 <yingzhor@gmail.com>`
+	app.Authors = `yingzhuo <yingzhor@gmail.com>`
 
 	app.BuildInfo = &cli.BuildInfo{
 		GitBranch:   BuildGitBranch,
@@ -57,14 +56,6 @@ func main() {
 			NoOptDefValue: "true",
 			IsBool:        true,
 			Value:         &cnf.GlobalQuietMode,
-		}, {
-			Name:          "D, debug",
-			Usage:         "debug mode",
-			DefValue:      "false",
-			NoOptDefValue: "true",
-			IsBool:        true,
-			Hidden:        true,
-			Value:         &cnf.GlobalDebugMode,
 		},
 	}
 
@@ -92,24 +83,9 @@ func main() {
 		cmd.NewCommandSleep(),
 	}
 
-	// 初始化钩子
-	app.OnAppInitialized = func(c *cli.Context) {
-		if cnf.GlobalDebugMode {
-			logrus.SetLevel(logrus.DebugLevel)
-		}
-	}
-
 	app.Run(os.Args)
 }
 
 func init() {
 	rand.Seed(time.Now().UnixNano())
-
-	logrus.SetReportCaller(false)
-	logrus.SetLevel(logrus.FatalLevel)
-	logrus.SetFormatter(&logrus.TextFormatter{
-		DisableColors: false,
-		FullTimestamp: true,
-	})
-
 }

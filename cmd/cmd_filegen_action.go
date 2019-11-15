@@ -19,7 +19,6 @@ import (
 	"text/template"
 
 	"github.com/BurntSushi/toml"
-	"github.com/sirupsen/logrus"
 	"github.com/yingzhuo/docktool/cnf"
 	"github.com/yingzhuo/docktool/fn"
 	"github.com/yingzhuo/go-cli/v2"
@@ -28,18 +27,9 @@ import (
 	"gopkg.in/yaml.v2"
 )
 
-func ActionFilegen(c *cli.Context) {
+func ActionFilegen(_ *cli.Context) {
 
 	initConfig()
-
-	logrus.Debugf("command: \"%v\"", c.Name())
-	logrus.Debugf("bin dir: \"%v\"", cnf.GlobalBinDir)
-	logrus.Debugf("pwd: \"%v\"", cnf.GlobalPWD)
-	logrus.Debugf("template file: \"%v\"", cnf.FilegenTemplateFile)
-	logrus.Debugf("json file: \"%v\"", cnf.FilegenJsonFile)
-	logrus.Debugf("yaml file: \"%v\"", cnf.FilegenYamlFile)
-	logrus.Debugf("toml file: \"%v\"", cnf.FilegenTomlFile)
-	logrus.Debugf("output file: \"%v\"", cnf.FilegenOutputFile)
 
 	templateContent := loadTemplateContent()
 	rootModel := getRootModel()
@@ -117,24 +107,11 @@ func getRootModel() map[string]interface{} {
 }
 
 func getVarsModel() map[string]interface{} {
-
-	defer func() {
-		if cnf.GlobalDebugMode {
-			logrus.Debugf("count of vars: %v", len(cnf.FilegenVars))
-		}
-	}()
-
 	return cnf.FilegenVars
 }
 
 func getJsonModel() map[string]interface{} {
 	dict := make(map[string]interface{})
-
-	defer func() {
-		if cnf.GlobalDebugMode {
-			logrus.Debugf("count of json model: %v", len(dict))
-		}
-	}()
 
 	// 指定了文件但是又不存在
 	if cnf.FilegenJsonFile != "" && !jfile.IsFileExists(cnf.FilegenJsonFile) {
@@ -154,12 +131,6 @@ func getJsonModel() map[string]interface{} {
 func getYamlModel() map[string]interface{} {
 	dict := make(map[string]interface{})
 
-	defer func() {
-		if cnf.GlobalDebugMode {
-			logrus.Debugf("count of yaml model: %v", len(dict))
-		}
-	}()
-
 	// 指定了文件但是又不存在
 	if cnf.FilegenYamlFile != "" && !jfile.IsFileExists(cnf.FilegenYamlFile) {
 		panic(fmt.Sprintf("\"%s\" not exists", cnf.FilegenYamlFile))
@@ -178,12 +149,6 @@ func getYamlModel() map[string]interface{} {
 func getTomlModel() map[string]interface{} {
 	dict := make(map[string]interface{})
 
-	defer func() {
-		if cnf.GlobalDebugMode {
-			logrus.Debugf("count of toml model: %v", len(dict))
-		}
-	}()
-
 	// 指定了文件但是又不存在
 	if cnf.FilegenTomlFile != "" && !jfile.IsFileExists(cnf.FilegenTomlFile) {
 		panic(fmt.Sprintf("\"%s\" not exists", cnf.FilegenTomlFile))
@@ -200,12 +165,6 @@ func getTomlModel() map[string]interface{} {
 
 func getEnvModel() map[string]interface{} {
 	dict := make(map[string]interface{})
-
-	defer func() {
-		if cnf.GlobalDebugMode {
-			logrus.Debugf("count of env model: %v", len(dict))
-		}
-	}()
 
 	for _, v := range os.Environ() {
 		kv := strings.Split(v, "=")
