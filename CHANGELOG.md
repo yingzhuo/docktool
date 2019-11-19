@@ -1,3 +1,6 @@
+## 1.0.5
+- **[BUG FIX]** Fix issue #2
+
 ## 1.0.4
 - **[DELETE]** Remove debug mode
 

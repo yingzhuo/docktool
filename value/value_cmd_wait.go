@@ -34,6 +34,10 @@ func (e *WaitList) Add(value string) {
 	*e = append(*e, value)
 }
 
+func (e *WaitList) IsEmpty() bool {
+	return len(*e) == 0
+}
+
 // -----------------
 
 type WaitTimeout time.Duration

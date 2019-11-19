@@ -35,6 +35,11 @@ func ActionWait(c *cli.Context) {
 	}
 
 	list := getList()
+
+	if list.IsEmpty() {
+		return
+	}
+
 	count := len(list)
 	timeoutFlag := false
 	ch = make(chan string, count)
