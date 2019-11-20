@@ -81,6 +81,7 @@ func main() {
 		cmd.NewCommandFilegen(),
 		cmd.NewCommandWait(),
 		cmd.NewCommandSleep(),
+		cmd.NewCommandTest(),
 	}
 
 	app.Run(os.Args)

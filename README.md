@@ -2,7 +2,7 @@
 
 ```
 NAME:
-   docktool - tool set for docker container
+   docktool - tools for docker container
 
 USAGE:
    docktool [global options] COMMAND [command options] [arguments ...]
@@ -11,15 +11,16 @@ VERSION:
    1.x.x
 
 AUTHORS:
-   应卓 <yingzhor@gmail.com>
+   yingzhuo <yingzhor@gmail.com>
 
 COMMANDS:
    filegen   generate file using template
    wait      wait until tcp reachable or timeout
    sleep     make current thread sleep
+   test      test env/file/tcp
 
 GLOBALS OPTIONS:
-   -q, --quiet     quiet mode
+   -q, --quiet     quiet mode (default: false)
        --help      print this usage
        --version   print version information
 

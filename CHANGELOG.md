@@ -1,3 +1,6 @@
+## 1.0.6
+- **[NEW]** New sub command `test`
+
 ## 1.0.5
 - **[BUG FIX]** Fix issue #2
 
