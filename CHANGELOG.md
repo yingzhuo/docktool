@@ -1,5 +1,6 @@
 ## 1.0.7
 - **[NEW]** Add some short flag sub command `test`
+- **[BUG FIX]** Fix some bug
 
 ## 1.0.6
 - **[NEW]** New sub command `test`
