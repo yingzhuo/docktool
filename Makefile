@@ -1,5 +1,5 @@
 TIMESTAMP  	:= $(shell /bin/date "+%F %T")
-VERSION		:= 1.0.6
+VERSION		:= 1.0.7
 NAME		:= docktool
 LDFLAGS		:= -s -w \
 			   -X 'main.BuildVersion=$(VERSION)' \
@@ -19,8 +19,8 @@ build: clean
 	CGO_ENABLED=0 GOOS=linux  GOARCH=amd64 go build -a -installsuffix cgo -ldflags "$(LDFLAGS)" -o $(CURDIR)/_bin/$(NAME)-linux-amd64-$(VERSION)
 	CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -a -installsuffix cgo -ldflags "$(LDFLAGS)" -o $(CURDIR)/_bin/$(NAME)-darwin-amd64-$(VERSION)
 
-install: uninstall
-	@sudo CGO_ENABLED=0 go build -a -installsuffix cgo -ldflags "$(LDFLAGS)" -o /usr/local/bin/$(NAME)
+install: uninstall build
+	sudo cp $(CURDIR)/_bin/$(NAME)-darwin-amd64-$(VERSION) /usr/local/bin/$(NAME)
 	@sudo chmod a+x /usr/local/bin/$(NAME)
 
 uninstall:

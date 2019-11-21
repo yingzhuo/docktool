@@ -36,7 +36,7 @@ func main() {
 	app.Name = "docktool"
 	app.Usage = "tools for docker container"
 	app.Version = BuildVersion
-	app.Authors = `yingzhuo <yingzhor@gmail.com>`
+	app.Authors = "应卓 <yingzhor@gmail.com>"
 
 	app.BuildInfo = &cli.BuildInfo{
 		GitBranch:   BuildGitBranch,

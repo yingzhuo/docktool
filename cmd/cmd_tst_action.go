@@ -11,6 +11,7 @@ package cmd
 
 import (
 	"os"
+	"strings"
 
 	"github.com/yingzhuo/docktool/cnf"
 	"github.com/yingzhuo/go-cli/v2"
@@ -20,36 +21,50 @@ import (
 
 func ActionTest(_ *cli.Context) {
 
-	envNames := cnf.TestEnvNames.Unique()
+	envNames := cnf.TestEnvNames.
+		Map(strings.TrimSpace).
+		Unique()
 
 	for _, it := range *envNames {
 		if _, found := os.LookupEnv(it); !found {
 			Printf("env name \"%s\" NOT found\n", it)
-			os.Exit(-1)
+			os.Exit(1)
 		}
 	}
 
-	filenams := cnf.TestFilenames.Unique()
-	for _, it := range *filenams {
+	filenames := cnf.TestFilenames.
+		Map(strings.TrimSpace).
+		Map(jfile.BetterFilename).
+		Unique()
+
+	for _, it := range *filenames {
 		if jfile.IsFileNotExists(it) {
 			Printf("file \"%s\" NOT exists\n", it)
-			os.Exit(-1)
+			os.Exit(1)
 		}
 	}
 
-	dirnames := cnf.TestDirnames.Unique()
+	dirnames := cnf.TestDirnames.
+		Map(strings.TrimSpace).
+		Map(jfile.BetterFilename).
+		Unique()
+
 	for _, it := range *dirnames {
 		if jfile.IsDirNotExists(it) {
 			Printf("dir \"%s\" NOT exists\n", it)
-			os.Exit(-1)
+			os.Exit(1)
 		}
 	}
 
-	addrs := cnf.TestTcpAddrs.Unique()
+	addrs := cnf.TestTcpAddrs.
+		Map(strings.TrimSpace).
+		Unique()
+
 	for _, it := range *addrs {
 		if jtcp.IsNotReachable(it) {
 			Printf("addr \"%s\" is NOT reachable\n", it)
-			os.Exit(-1)
+			os.Exit(1)
 		}
 	}
+
 }

@@ -30,17 +30,17 @@ docktool test --tcp="localhost:8080"`
 		SeeAlso:     "https://github.com/yingzhuo/docktool/tree/master/.github/test.md",
 		Flags: []*cli.Flag{
 			{
-				Name:        "env",
+				Name:        "e, env",
 				Usage:       "env name for test, can be passed multiple times",
 				Placeholder: "<env-name>",
 				Value:       &cnf.TestEnvNames,
 			}, {
-				Name:        "file",
+				Name:        "f, file",
 				Usage:       "file name for test, can be passed multiple times",
 				Placeholder: "<file-name>",
 				Value:       &cnf.TestFilenames,
 			}, {
-				Name:        "dir",
+				Name:        "d, dir",
 				Usage:       "dir name for test, can be passed multiple times",
 				Placeholder: "<dir-name>",
 				Value:       &cnf.TestDirnames,
