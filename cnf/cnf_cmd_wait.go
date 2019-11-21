@@ -9,7 +9,9 @@
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 package cnf
 
-import "github.com/yingzhuo/docktool/value"
+import (
+	"github.com/yingzhuo/docktool/value"
+)
 
 var WaitEnvPrefix string
 var WaitList value.WaitList

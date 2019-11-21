@@ -19,8 +19,8 @@ var TestDirnames jstr.StringSlice
 var TestTcpAddrs jstr.StringSlice
 
 func init() {
-	TestEnvNames = jstr.StringSlice{}
-	TestFilenames = jstr.StringSlice{}
-	TestDirnames = jstr.StringSlice{}
-	TestTcpAddrs = jstr.StringSlice{}
+	TestEnvNames = *jstr.NewStringSlice()
+	TestFilenames = *jstr.NewStringSlice()
+	TestDirnames = *jstr.NewStringSlice()
+	TestTcpAddrs = *jstr.NewStringSlice()
 }
