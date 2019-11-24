@@ -56,12 +56,10 @@ also, you can install it on your docker image. for example:
 ```dockerfile
 FROM busybox
 
-ENV DOCKTOOL_VERSION=1.x.x
+ARG DOCKTOOL_VERSION=1.x.x
 
-RUN wget --no-check-certificate "https://github.com/yingzhuo/docktool/releases/download/$DOCKTOOL_VERSION/docktool-linux-amd64-$DOCKTOOL_VERSION" -O /bin/docktool && \
+RUN wget --no-check-certificate https://github.com/yingzhuo/docktool/releases/download/$DOCKTOOL_VERSION/docktool-linux-amd64-$DOCKTOOL_VERSION -O /bin/docktool && \
     chmod +x /bin/docktool
-
-CMD ["docktool --help"]
 ```
 
 #### Build it on your computer
@@ -77,6 +75,7 @@ make install
 * [filegen](./.github/filegen.md)
 * [wait](./.github/wait.md)
 * [sleep](./.github/sleep.md)
+* [test](./.github/test.md)
 
 ### Contributing
 
