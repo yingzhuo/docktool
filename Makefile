@@ -1,5 +1,5 @@
 TIMESTAMP  	:= $(shell /bin/date "+%F %T")
-VERSION		:= 1.0.7
+VERSION		:= 1.0.8
 NAME		:= docktool
 LDFLAGS		:= -s -w \
 			   -X 'main.BuildVersion=$(VERSION)' \

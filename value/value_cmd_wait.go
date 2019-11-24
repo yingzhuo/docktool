@@ -30,8 +30,17 @@ func (e *WaitList) Set(value string) error {
 }
 
 func (e *WaitList) Add(value string) {
-	value = strings.TrimSpace(value)
-	*e = append(*e, value)
+	if !strings.Contains(value, ",") {
+		value = strings.TrimSpace(value)
+		*e = append(*e, value)
+	} else {
+		for _, v := range strings.Split(value, ",") {
+			v = strings.TrimSpace(v)
+			if v != "" {
+				*e = append(*e, strings.TrimSpace(v))
+			}
+		}
+	}
 }
 
 func (e *WaitList) IsEmpty() bool {
