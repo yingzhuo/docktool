@@ -17,7 +17,7 @@ import (
 func NewCommandTest() *cli.Command {
 
 	examples := `docktool test --env="JAVA_HOME"
-docktool test --file="/Users/yingzhuo/my-profile.sh"
+docktool test --file="/tmp/test.sh"
 docktool test --dir="/tmp"
 docktool test --tcp="localhost:8080"`
 

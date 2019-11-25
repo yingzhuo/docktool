@@ -22,6 +22,7 @@ EXAMPLES:
    docktool wait -e WAIT_
    docktool wait -w localhost:8080 -t "2019-11-02 14:34:40 +0800
    docktool wait -w localhost:3306 -w localhost:6379 -w localhost:8080 --logic=ANY
+   docktool wait -w "localhost:3306,localhost:6379"
    WAIT_MYSQL=localhost:3306 WAIT_REDIS=localhost:6379 docktool wait
 
 SEE ALSO:
