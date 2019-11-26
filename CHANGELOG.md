@@ -1,3 +1,9 @@
+## 1.1.0
+- **[NEW]** New sub command `filedel`
+
+## 1.0.10
+- **[BUG FIX]** Fix issue #3
+
 ## 1.0.9
 - **[NEW]** Add new func `toSlice` sub command `filegen`
 

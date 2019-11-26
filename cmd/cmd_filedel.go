@@ -1,0 +1,46 @@
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+*	 ____   ___   ____ _  _______ ___   ___  _
+*	|  _ \ / _ \ / ___| |/ /_   _/ _ \ / _ \| |
+*	| | | | | | | |   | ' /  | || | | | | | | |
+*	| |_| | |_| | |___| . \  | || |_| | |_| | |___
+*	|____/ \___/ \____|_|\_\ |_| \___/ \___/|_____|
+*
+*	https://github.com/yingzhuo/docktool
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+package cmd
+
+import (
+	"github.com/yingzhuo/docktool/cnf"
+	"github.com/yingzhuo/go-cli/v2"
+)
+
+func NewCommandFiledel() *cli.Command {
+
+	examples := `docktool filedel --dir=/my/dir -p=*.yml -p=*yaml
+docktool filedel --dir=/my/dir -p=data[0-9].csv
+docktool filedel --dir=/my/dir -p=*.txt -p=*.md -p=LICENSE`
+
+	return &cli.Command{
+		Name:        "filedel",
+		Usage:       "delete files/dirs using wildcard",
+		UsageText:   "[options]",
+		Description: "delete files/dirs using wildcard",
+		Examples:    examples,
+		SeeAlso:     "https://github.com/yingzhuo/docktool/tree/master/.github/filedel.md",
+		Flags: []*cli.Flag{
+			{
+				Name:        "p, pattern",
+				Usage:       "wildcard pattern",
+				Placeholder: "<wildcard>",
+				Value:       &cnf.FiledelPatterns,
+			}, {
+				Name:        "dir",
+				Usage:       "start dir",
+				Placeholder: "<dir>",
+				Value:       &cnf.FiledelDir,
+			},
+		},
+		Action: ActionFiledel,
+	}
+
+}

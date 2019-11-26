@@ -79,6 +79,7 @@ func main() {
 	// 子命令
 	app.Commands = []*cli.Command{
 		cmd.NewCommandFilegen(),
+		cmd.NewCommandFiledel(),
 		cmd.NewCommandWait(),
 		cmd.NewCommandSleep(),
 		cmd.NewCommandTest(),

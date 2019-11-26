@@ -8,13 +8,14 @@ USAGE:
    docktool [global options] COMMAND [command options] [arguments ...]
 
 VERSION:
-   1.x.x
+   1.1.0
 
 AUTHORS:
-   yingzhuo <yingzhor@gmail.com>
+   应卓 <yingzhor@gmail.com>
 
 COMMANDS:
    filegen   generate file using template
+   filedel   delete files/dirs using wildcard
    wait      wait until tcp reachable or timeout
    sleep     make current thread sleep
    test      test env/file/tcp
@@ -28,7 +29,6 @@ SEE ALSO:
    https://github.com/yingzhuo/docktool
 
 Run 'docktool COMMAND --help' for more information on a command.
-
 ```
 
 ### Installation
@@ -73,6 +73,7 @@ make install
 ### Sub Command
 
 * [filegen](./.github/filegen.md)
+* [filedel](./.github/filedel.md)
 * [wait](./.github/wait.md)
 * [sleep](./.github/sleep.md)
 * [test](./.github/test.md)
