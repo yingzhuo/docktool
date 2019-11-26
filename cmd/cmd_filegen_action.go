@@ -167,8 +167,12 @@ func getEnvModel() map[string]interface{} {
 	dict := make(map[string]interface{})
 
 	for _, v := range os.Environ() {
-		kv := strings.Split(v, "=")
-		dict[kv[0]] = kv[1]
+		i := strings.Index(v, "=")
+		if i > -1 {
+			name := v[:i]
+			value := v[i+1:]
+			dict[name] = value
+		}
 	}
 	return dict
 }
