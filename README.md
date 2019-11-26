@@ -8,7 +8,7 @@ USAGE:
    docktool [global options] COMMAND [command options] [arguments ...]
 
 VERSION:
-   1.1.0
+   1.x.x
 
 AUTHORS:
    应卓 <yingzhor@gmail.com>

@@ -18,7 +18,8 @@ func NewCommandFiledel() *cli.Command {
 
 	examples := `docktool filedel --dir=/my/dir -p=*.yml -p=*yaml
 docktool filedel --dir=/my/dir -p=data[0-9].csv
-docktool filedel --dir=/my/dir -p=*.txt -p=*.md -p=LICENSE`
+docktool filedel --dir=/my/dir -p=*.txt -p=*.md -p=LICENSE
+docktool filedel --dir=/my/dir -p=sub-dir-*/`
 
 	return &cli.Command{
 		Name:        "filedel",
@@ -30,7 +31,7 @@ docktool filedel --dir=/my/dir -p=*.txt -p=*.md -p=LICENSE`
 		Flags: []*cli.Flag{
 			{
 				Name:        "p, pattern",
-				Usage:       "wildcard pattern",
+				Usage:       "wildcard pattern, can be passed multiple times",
 				Placeholder: "<wildcard>",
 				Value:       &cnf.FiledelPatterns,
 			}, {
