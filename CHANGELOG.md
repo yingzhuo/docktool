@@ -1,3 +1,6 @@
+## 1.0.9
+- **[NEW]** Add new func `toSlice` sub command `filegen`
+
 ## 1.0.8
 - **[BUG FIX]** Fix some bug
 

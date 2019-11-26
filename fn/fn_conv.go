@@ -116,3 +116,7 @@ func toBool(s string) bool {
 		panic("can't convert to bool ('" + s + "')")
 	}
 }
+
+func toSlice(sep, s string) []string {
+	return strings.Split(s, sep)
+}

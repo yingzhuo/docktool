@@ -39,6 +39,7 @@ func TxtFuncMap() template.FuncMap {
 	f["toInt"] = toInt64
 	f["toFloat"] = toFloat64
 	f["toFloat64"] = toFloat64
+	f["toSlice"] = toSlice
 
 	// math
 	f["increase"] = addOne
