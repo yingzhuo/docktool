@@ -1,4 +1,4 @@
-## 1.1.0
+## 1.0.11
 - **[NEW]** New sub command `filedel`
 
 ## 1.0.10
