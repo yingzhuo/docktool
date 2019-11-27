@@ -8,7 +8,7 @@ USAGE:
    docktool [global options] COMMAND [command options] [arguments ...]
 
 VERSION:
-   1.x.x
+   v1.1.x
 
 AUTHORS:
    应卓 <yingzhor@gmail.com>
@@ -29,6 +29,7 @@ SEE ALSO:
    https://github.com/yingzhuo/docktool
 
 Run 'docktool COMMAND --help' for more information on a command.
+
 ```
 
 ### Installation

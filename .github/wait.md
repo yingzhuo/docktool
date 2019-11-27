@@ -10,11 +10,11 @@ DESCRIPTION:
    wait until tcp reachable or timeout
 
 OPTIONS:
-   -e, --environment-prefix <prefix>   environment name prefix of waiting list (default: WAIT_)
-   -w, --wait <addr>                   addr to wait, can be passed multiple times
-   -t, --timeout <time>                timeout
-       --logic <logic>                 logic of testing (ALL | ANY) (default: ALL)
-       --help                          print this usage
+   -e, --environment-prefix [<prefix>]   environment name prefix of waiting list (default: WAIT_)
+   -w, --wait <addr>                     addr to wait, can be passed multiple times
+   -t, --timeout <time>                  timeout
+       --logic <logic>                   logic of testing (ALL | ANY) (default: ALL)
+       --help                            print this usage
 
 EXAMPLES:
    docktool wait -w localhost:3306 -w localhost:6379
@@ -26,6 +26,7 @@ EXAMPLES:
 
 SEE ALSO:
    https://github.com/yingzhuo/docktool/tree/master/.github/wait.md
+
 
 ```
 
