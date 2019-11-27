@@ -68,7 +68,7 @@ func ActionWait(c *cli.Context) {
 
 t1:
 
-	close(ch)
+	defer close(ch)
 
 	ok := true
 
@@ -97,10 +97,13 @@ func getList() value.WaitList {
 	list := cnf.WaitList
 
 	// 读取环境变量
-	for _, kv := range os.Environ() {
-		if strings.HasPrefix(kv, cnf.WaitEnvPrefix) {
-			if parts := strings.Split(kv, "="); len(parts) == 2 {
-				list.Add(parts[1])
+	for _, v := range os.Environ() {
+		i := strings.Index(v, "=")
+		if i > -1 {
+			name := v[:i]
+			val := v[i+1:]
+			if name != "" && strings.HasPrefix(name, cnf.WaitEnvPrefix) {
+				list.Add(val)
 			}
 		}
 	}
@@ -115,6 +118,10 @@ func getList() value.WaitList {
 			dict[it] = true
 		}
 	}
+
+	fmt.Println("---")
+	fmt.Println(ret)
+	fmt.Println("---")
 	return ret
 }
 

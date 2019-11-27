@@ -30,7 +30,8 @@ func ActionFiledel(_ *cli.Context) {
 		panic(fmt.Errorf("\"%v\" not exists", startDir))
 	}
 
-	patterns := cnf.FiledelPatterns
+	patterns := cnf.FiledelPatterns.
+		Unique()
 
 	fs := make([]string, 0)
 
@@ -38,7 +39,7 @@ func ActionFiledel(_ *cli.Context) {
 		Start: startDir,
 		OnDir: func(dirname string) {
 			basename := filepath.Base(dirname)
-			for _, pattern := range patterns {
+			for _, pattern := range *patterns {
 
 				if !strings.HasSuffix(pattern, "/") {
 					continue
@@ -53,7 +54,7 @@ func ActionFiledel(_ *cli.Context) {
 		},
 		OnFile: func(filename string) {
 			basename := filepath.Base(filename)
-			for _, pattern := range patterns {
+			for _, pattern := range *patterns {
 				if matched, _ := filepath.Match(pattern, basename); matched {
 					fs = append(fs, filename)
 				}

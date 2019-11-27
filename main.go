@@ -36,7 +36,7 @@ func main() {
 	app.Name = "docktool"
 	app.Usage = "tools for docker container"
 	app.Version = BuildVersion
-	app.Authors = "应卓 <yingzhor@gmail.com>"
+	app.Authors = `应卓 <yingzhor@gmail.com>`
 
 	app.BuildInfo = &cli.BuildInfo{
 		GitBranch:   BuildGitBranch,
@@ -60,7 +60,7 @@ func main() {
 	}
 
 	// 处理所有错误
-	app.OnActionPanic = func(context *cli.Context, e error) {
+	app.OnActionPanic = func(_ *cli.Context, e error) {
 		msg := e.Error()
 
 		if msg == "" {

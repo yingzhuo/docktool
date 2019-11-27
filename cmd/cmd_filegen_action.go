@@ -198,7 +198,7 @@ func writeOutput(content string) {
 	if cnf.FilegenOutputAppend {
 		fg |= os.O_APPEND // 追加写
 	} else {
-		fg |= os.O_TRUNC // 覆盖写
+		fg |= os.O_TRUNC // 覆盖写 (默认)
 	}
 
 	filename := cnf.FilegenOutputFile

@@ -10,7 +10,6 @@
 package fn
 
 import (
-	"fmt"
 	"math/rand"
 	"reflect"
 	"strings"
@@ -21,11 +20,6 @@ import (
 
 func TxtFuncMap() template.FuncMap {
 	f := template.FuncMap{}
-
-	// for debug
-	f["type"] = func(i interface{}) string {
-		return fmt.Sprintf("%T", i)
-	}
 
 	// common
 	f["size"] = size
@@ -129,16 +123,8 @@ func defaultValue(defaultValue interface{}, value interface{}) interface{} {
 	return value
 }
 
-func join(separator string, value []interface{}) string {
-
-	sb := &strings.Builder{}
-	for i, v := range value {
-		_, _ = fmt.Fprintf(sb, "%v", v)
-		if i != len(value)-1 {
-			_, _ = fmt.Fprintf(sb, separator)
-		}
-	}
-	return sb.String()
+func join(sep string, a []string) string {
+	return strings.Join(a, sep)
 }
 
 func singleQuote(s string) string {
