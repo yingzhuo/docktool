@@ -1,3 +1,6 @@
+## v1.1.1
+- **[NEW]** add new flag for sub command `filedel`
+
 ## v1.1.0
 - **[BUG FIX]** Fix some bugs
 

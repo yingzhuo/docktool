@@ -15,3 +15,8 @@ import (
 
 var FiledelDir string
 var FiledelPatterns jstr.StringSlice
+var FiledelDelEmptyDir bool
+
+func init() {
+	FiledelDelEmptyDir = false
+}

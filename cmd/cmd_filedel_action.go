@@ -11,6 +11,8 @@ package cmd
 
 import (
 	"fmt"
+	"io"
+	"os"
 	"path/filepath"
 	"strings"
 
@@ -71,4 +73,32 @@ func ActionFiledel(_ *cli.Context) {
 		_ = jfile.RemoveFileOrDir(f)
 	}
 
+	// 最后删除所有空目录
+	if cnf.FiledelDelEmptyDir {
+
+		w := jfile.FileWalker{
+			Start: startDir,
+			OnDir: func(dirname string) {
+				if jfile.IsDirExists(dirname ) && isEmptyDir(dirname) {
+					_ = jfile.RemoveFileOrDir(dirname)
+				}
+			},
+		}
+		w.Run()
+	}
+
+}
+
+func isEmptyDir(dirname string) bool {
+	f, err := os.Open(dirname)
+	if err != nil {
+		panic(err)
+	}
+	defer f.Close()
+
+	_, err = f.Readdirnames(1) // Or f.Readdir(1)
+	if err == io.EOF {
+		return true
+	}
+	return false
 }

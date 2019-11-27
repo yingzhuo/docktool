@@ -19,7 +19,8 @@ func NewCommandFiledel() *cli.Command {
 	examples := `docktool filedel --dir=/my/dir -p=*.yml -p=*yaml
 docktool filedel --dir=/my/dir -p=data[0-9].csv
 docktool filedel --dir=/my/dir -p=*.txt -p=*.md -p=LICENSE
-docktool filedel --dir=/my/dir -p=sub-dir-*/`
+docktool filedel --dir=/my/dir -p=sub-dir-*/
+docktool filedel --dir=/my/dir --delete-empty-dir`
 
 	return &cli.Command{
 		Name:        "filedel",
@@ -30,15 +31,22 @@ docktool filedel --dir=/my/dir -p=sub-dir-*/`
 		SeeAlso:     "https://github.com/yingzhuo/docktool/tree/master/.github/filedel.md",
 		Flags: []*cli.Flag{
 			{
+				Name:        "dir",
+				Usage:       "start dir",
+				Placeholder: "<dir>",
+				Value:       &cnf.FiledelDir,
+			},
+			{
 				Name:        "p, pattern",
 				Usage:       "wildcard pattern, can be passed multiple times",
 				Placeholder: "<wildcard>",
 				Value:       &cnf.FiledelPatterns,
 			}, {
-				Name:        "dir",
-				Usage:       "start dir",
-				Placeholder: "<dir>",
-				Value:       &cnf.FiledelDir,
+				Name:          "delete-empty-dir",
+				Usage:         "delete empty dir at last",
+				DefValue:      "false",
+				NoOptDefValue: "true",
+				Value:         &cnf.FiledelDelEmptyDir,
 			},
 		},
 		Action: ActionFiledel,
