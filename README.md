@@ -39,7 +39,7 @@ you can install this tool by `curl` or `wget`.
 #### On your computer
 
 ```bash
-VERSION=1.x.x
+VERSION=v1.1.x
 
 # linux
 sudo curl -fsSL "https://github.com/yingzhuo/docktool/releases/download/$VERSION/docktool-linux-amd64-$VERSION" -o /usr/local/bin/docktool
@@ -57,7 +57,7 @@ also, you can install it on your docker image. for example:
 ```dockerfile
 FROM busybox
 
-ARG DOCKTOOL_VERSION=1.x.x
+ARG VERSION=v1.1.x
 
 RUN wget --no-check-certificate https://github.com/yingzhuo/docktool/releases/download/$DOCKTOOL_VERSION/docktool-linux-amd64-$DOCKTOOL_VERSION -O /bin/docktool && \
     chmod +x /bin/docktool

@@ -1,5 +1,5 @@
 ## v1.1.0
-- **[BUG FIX}** Fix some bugs
+- **[BUG FIX]** Fix some bugs
 
 ## 1.0.11
 - **[NEW]** New sub command `filedel`
