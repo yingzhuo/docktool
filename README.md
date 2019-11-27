@@ -38,6 +38,8 @@ you can install this tool by `curl` or `wget`.
 
 #### On your computer
 
+linux & macOS:
+
 ```bash
 VERSION=v1.1.x
 
@@ -49,6 +51,10 @@ sudo chmod +x /usr/local/bin/docktool
 sudo curl -fsSL "https://github.com/yingzhuo/docktool/releases/download/$VERSION/docktool-darwin-amd64-$VERSION" -o /usr/local/bin/docktool
 sudo chmod +x /usr/local/bin/docktool
 ```
+
+windows:
+
+You can download it from [release page](https://github.com/yingzhuo/docktool/releases).
 
 #### On docker image
 
