@@ -16,20 +16,15 @@ clean:
 	@rm -rf $(CURDIR)/_bin &> /dev/null
 
 build: clean
-	CGO_ENABLED=0 GOOS=linux  GOARCH=amd64 go build -a -installsuffix cgo -ldflags "$(LDFLAGS)" -o $(CURDIR)/_bin/$(NAME)-linux-amd64-$(VERSION)
-	CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -a -installsuffix cgo -ldflags "$(LDFLAGS)" -o $(CURDIR)/_bin/$(NAME)-darwin-amd64-$(VERSION)
+	CGO_ENABLED=0 GOOS=linux   GOARCH=amd64 go build -a -installsuffix cgo -ldflags "$(LDFLAGS)" -o $(CURDIR)/_bin/$(NAME)-linux-amd64-$(VERSION)
+	CGO_ENABLED=0 GOOS=darwin  GOARCH=amd64 go build -a -installsuffix cgo -ldflags "$(LDFLAGS)" -o $(CURDIR)/_bin/$(NAME)-darwin-amd64-$(VERSION)
+	CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -a -installsuffix cgo -ldflags "$(LDFLAGS)" -o $(CURDIR)/_bin/$(NAME)-windows-amd64-$(VERSION).exe
 
-install: uninstall build
-	sudo cp $(CURDIR)/_bin/$(NAME)-darwin-amd64-$(VERSION) /usr/local/bin/$(NAME)
+install:
+	CGO_ENABLED=0 GOOS=linux  GOARCH=amd64 sudo go build -a -installsuffix cgo -ldflags "$(LDFLAGS)" -o /usr/local/bin/$(NAME)
 	@sudo chmod a+x /usr/local/bin/$(NAME)
 
 uninstall:
-	@sudo rm -rf /usr/local/bin/$(NAME)-* &> /dev/null
-	@sudo rm -rf /usr/local/bin/frep &> /dev/null
+	@sudo rm -rf /usr/local/bin/$(NAME) &> /dev/null
 
-github: fmt
-	@git add . &> /dev/null
-	@git commit -m "$(TIMESTAMP)"
-	@git push origin master
-
-.PHONY: fmt clean build install uninstall github
+.PHONY: fmt clean build install uninstall
