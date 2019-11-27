@@ -13,19 +13,14 @@ import (
 	"fmt"
 	"os"
 	"strings"
-	"sync"
 	"time"
 
 	"github.com/yingzhuo/docktool/cnf"
 	"github.com/yingzhuo/docktool/value"
 	"github.com/yingzhuo/go-cli/v2"
-	jcmd "github.com/yingzhuo/jing/cmd"
-	jstr "github.com/yingzhuo/jing/str"
 	jtcp "github.com/yingzhuo/jing/tcp"
 )
 
-// 结果集合
-var collection = newWaitingResultCollection()
 var ch chan string
 
 func ActionWait(c *cli.Context) {
@@ -44,54 +39,31 @@ func ActionWait(c *cli.Context) {
 	timeoutFlag := false
 	ch = make(chan string, count)
 
-	for _, addr := range list {
-		go doWait(jstr.NewUUID36(), addr, &timeoutFlag) // uuid as thread id
+	for id, addr := range list {
+		go doWait(fmt.Sprintf("%d", id), addr, &timeoutFlag)
 	}
 
 	go doTimeout(cnf.WaitTimeout.Get(), &timeoutFlag)
 
+	n := 0
 	for {
 		select {
-		case threadId := <-ch:
-			result := collection.get(threadId)
-			Println(result.String())
+		case <-ch:
+			n++
 
 			if cnf.WaitLogic == "ANY" {
 				goto t1
 			}
 
-			if collection.size() == count {
+			if n == count {
 				goto t1
 			}
 		}
 	}
 
 t1:
-
-	defer close(ch)
-
-	ok := true
-
-	for _, it := range collection.dict {
-		if it.status == timeout {
-			ok = false
-			break
-		}
-	}
-
-	if ok && cnf.WaitShell != "" {
-		if output, err := jcmd.ShellOutput(cnf.WaitShell); err != nil {
-			panic(err)
-		} else {
-			fmt.Println(output)
-		}
-	}
+	close(ch)
 }
-
-const (
-	ok      = "ok"
-	timeout = "timeout"
-)
 
 func getList() value.WaitList {
 	list := cnf.WaitList
@@ -119,29 +91,22 @@ func getList() value.WaitList {
 		}
 	}
 
-	fmt.Println("---")
-	fmt.Println(ret)
-	fmt.Println("---")
 	return ret
 }
 
 func doWait(threadId string, addr string, timeoutFlag *bool) {
-	result := newWaitingResult(threadId, addr)
-
 	defer func() {
 		recover()
 	}()
 
 	for {
 		if jtcp.IsReachable(addr) {
-			result.status = ok
-			collection.add(result)
+			Printf("ok      : %s\n", addr)
 			ch <- threadId
 			return
 		} else {
 			if *timeoutFlag {
-				result.status = timeout
-				collection.add(result)
+				Printf("timeout : %s\n", addr)
 				ch <- threadId
 				return
 			} else {
@@ -156,7 +121,6 @@ func nap() {
 }
 
 func doTimeout(timeout time.Duration, quitVar *bool) {
-
 	if timeout <= 0 || *quitVar {
 		return
 	}
@@ -164,57 +128,5 @@ func doTimeout(timeout time.Duration, quitVar *bool) {
 	select {
 	case <-time.After(timeout):
 		*quitVar = true
-	}
-}
-
-// ---------------------------
-
-type waitingResult struct {
-	threadId string
-	addr     string
-	status   string
-}
-
-func newWaitingResult(threadId interface{}, addr string) *waitingResult {
-	return &waitingResult{
-		threadId: fmt.Sprintf("%v", threadId),
-		addr:     addr,
-		status:   "",
-	}
-}
-
-func (e *waitingResult) String() string {
-	return fmt.Sprintf("%-8s: %s", e.status, e.addr)
-}
-
-// ---------------------------
-
-type waitingResultCollection struct {
-	mutex *sync.Mutex
-	dict  map[string]*waitingResult
-}
-
-func (e *waitingResultCollection) add(ele *waitingResult) {
-	defer e.mutex.Unlock()
-	e.mutex.Lock()
-	e.dict[ele.threadId] = ele
-}
-
-func (e *waitingResultCollection) size() int {
-	defer e.mutex.Unlock()
-	e.mutex.Lock()
-	return len(e.dict)
-}
-
-func (e *waitingResultCollection) get(threadId interface{}) *waitingResult {
-	defer e.mutex.Unlock()
-	e.mutex.Lock()
-	return e.dict[fmt.Sprintf("%v", threadId)]
-}
-
-func newWaitingResultCollection() *waitingResultCollection {
-	return &waitingResultCollection{
-		mutex: &sync.Mutex{},
-		dict:  map[string]*waitingResult{},
 	}
 }

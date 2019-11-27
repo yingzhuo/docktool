@@ -18,7 +18,7 @@ func NewCommandWait() *cli.Command {
 
 	examples := `docktool wait -w localhost:3306 -w localhost:6379
 docktool wait -e WAIT_
-docktool wait -w localhost:8080 -t "2019-11-02 14:34:40 +0800
+docktool wait -w localhost:8080 -t "2019-11-02 14:34:40 +0800"
 docktool wait -w localhost:3306 -w localhost:6379 -w localhost:8080 --logic=ANY
 docktool wait -w "localhost:3306,localhost:6379"
 WAIT_MYSQL=localhost:3306 WAIT_REDIS=localhost:6379 docktool wait`
@@ -32,11 +32,12 @@ WAIT_MYSQL=localhost:3306 WAIT_REDIS=localhost:6379 docktool wait`
 		SeeAlso:     "https://github.com/yingzhuo/docktool/tree/master/.github/wait.md",
 		Flags: []*cli.Flag{
 			{
-				Name:        "e, environment-prefix",
-				Usage:       "environment name prefix of waiting list",
-				DefValue:    "WAIT_",
-				Value:       &cnf.WaitEnvPrefix,
-				Placeholder: "<prefix>",
+				Name:          "e, environment-prefix",
+				Usage:         "environment name prefix of waiting list",
+				DefValue:      "WAIT_",
+				NoOptDefValue: "WAIT_",
+				Value:         &cnf.WaitEnvPrefix,
+				Placeholder:   "<prefix>",
 			}, {
 				Name:        "w, wait",
 				Usage:       "addr to wait, can be passed multiple times",
@@ -47,11 +48,6 @@ WAIT_MYSQL=localhost:3306 WAIT_REDIS=localhost:6379 docktool wait`
 				Usage:       "timeout",
 				Value:       &cnf.WaitTimeout,
 				Placeholder: "<time>",
-			}, {
-				Name:        "s, shell",
-				Usage:       "run shell after waiting",
-				Value:       &cnf.WaitShell,
-				Placeholder: "<shell>",
 			}, {
 				Name:        "logic",
 				Usage:       "logic of testing (ALL | ANY)",
