@@ -6,7 +6,8 @@ LDFLAGS		:= -s -w \
 			   -X 'main.BuildGitBranch=$(shell git describe --all)' \
 			   -X 'main.BuildGitRev=$(shell git rev-list --count HEAD)' \
 			   -X 'main.BuildGitCommit=$(shell git rev-parse HEAD)' \
-			   -X 'main.BuildDate=$(shell /bin/date "+%F %T +08:00")'
+			   -X 'main.BuildDate=$(shell /bin/date "+%F %T +08:00")' \
+			   -X 'main.BuildBy=make'
 
 fmt:
 	@go fmt ./...

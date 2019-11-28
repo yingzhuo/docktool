@@ -27,6 +27,7 @@ var (
 	BuildGitRev    string
 	BuildGitCommit string
 	BuildDate      string
+	BuildBy        string
 )
 
 func main() {
@@ -43,6 +44,7 @@ func main() {
 		GitCommit:   BuildGitCommit,
 		GitRevCount: BuildGitRev,
 		Timestamp:   BuildDate,
+		BuiltBy:     BuildBy,
 	}
 
 	app.SeeAlso = `https://github.com/yingzhuo/docktool`
