@@ -32,13 +32,11 @@ Run 'docktool COMMAND --help' for more information on a command.
 
 ```
 
-### Installation
-
-you can install this tool by `curl` or `wget`.
+### Installing
 
 #### On your computer
 
-linux & macOS:
+if you're using linux or macOS, you can install this tool by `curl` or `wget`.
 
 ```bash
 VERSION=v1.1.x
@@ -52,9 +50,7 @@ sudo curl -fsSL "https://github.com/yingzhuo/docktool/releases/download/$VERSION
 sudo chmod +x /usr/local/bin/docktool
 ```
 
-windows:
-
-You can download it from [release page](https://github.com/yingzhuo/docktool/releases).
+if you're using windows, you can download it from [release page](https://github.com/yingzhuo/docktool/releases).
 
 #### On docker image
 
@@ -65,7 +61,7 @@ FROM busybox
 
 ARG VERSION=v1.1.x
 
-RUN wget --no-check-certificate https://github.com/yingzhuo/docktool/releases/download/$DOCKTOOL_VERSION/docktool-linux-amd64-$DOCKTOOL_VERSION -O /bin/docktool && \
+RUN wget https://github.com/yingzhuo/docktool/releases/download/$DOCKTOOL_VERSION/docktool-linux-amd64-$DOCKTOOL_VERSION -O /bin/docktool && \
     chmod +x /bin/docktool
 ```
 
@@ -100,3 +96,14 @@ Apache 2.0 license. See [LICENSE](./LICENSE)
 ### Chang Log
 
 See [chang log](./CHANGELOG.md)
+
+### Authors
+
+* 应卓 - [github](https://github.com/yingzhuo)
+
+See also the list of [contributors](https://github.com/yingzhuo/docktool/graphs/contributors) who participated in this project.
+
+### Acknowledgments
+
+* [subchen](https://github.com/subchen)
+	* [go-cli](https://github.com/subchen/go-cli)
