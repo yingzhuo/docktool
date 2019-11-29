@@ -52,6 +52,14 @@ sudo chmod +x /usr/local/bin/docktool
 
 if you're using windows, you can download it from [release page](https://github.com/yingzhuo/docktool/releases).
 
+you're able to verify the binary with GPG. for example:
+
+```
+gpg --verify docktool-darwin-amd64-v1.1.x.asc docktool-darwin-amd64-v1.1.x
+gpg --verify docktool-windows-amd64-v1.1.x.exe.asc docktool-windows-amd64-v1.1.x.exe
+gpg --verify docktool-linux-amd64-v1.1.x.asc docktool-linux-amd64-v1.1.x
+```
+
 #### On docker image
 
 also, you can install it on your docker image. for example:

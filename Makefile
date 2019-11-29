@@ -20,6 +20,9 @@ build: clean
 	CGO_ENABLED=0 GOOS=linux   GOARCH=amd64 go build -a -installsuffix cgo -ldflags "$(LDFLAGS)" -o $(CURDIR)/_bin/$(NAME)-linux-amd64-$(VERSION)
 	CGO_ENABLED=0 GOOS=darwin  GOARCH=amd64 go build -a -installsuffix cgo -ldflags "$(LDFLAGS)" -o $(CURDIR)/_bin/$(NAME)-darwin-amd64-$(VERSION)
 	CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -a -installsuffix cgo -ldflags "$(LDFLAGS)" -o $(CURDIR)/_bin/$(NAME)-windows-amd64-$(VERSION).exe
+	gpg --output $(CURDIR)/_bin/$(NAME)-linux-amd64-$(VERSION).asc       --armor --detach-sign $(CURDIR)/_bin/$(NAME)-linux-amd64-$(VERSION)
+	gpg --output $(CURDIR)/_bin/$(NAME)-darwin-amd64-$(VERSION).asc      --armor --detach-sign $(CURDIR)/_bin/$(NAME)-darwin-amd64-$(VERSION)
+	gpg --output $(CURDIR)/_bin/$(NAME)-windows-amd64-$(VERSION).exe.asc --armor --detach-sign $(CURDIR)/_bin/$(NAME)-windows-amd64-$(VERSION).exe
 
 install:
 	CGO_ENABLED=0 GOOS=linux  GOARCH=amd64 sudo go build -a -installsuffix cgo -ldflags "$(LDFLAGS)" -o /usr/local/bin/$(NAME)
