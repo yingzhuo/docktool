@@ -12,7 +12,7 @@ DESCRIPTION:
 OPTIONS:
        --dir <dir>            start dir
    -p, --pattern <wildcard>   wildcard pattern, can be passed multiple times
-       --delete-empty-dir     delete empty dir at last (default: false)
+       --delete-empty-dir     delete empty dirs at last (default: false)
        --help                 print this usage
 
 EXAMPLES:
@@ -39,4 +39,4 @@ RUN tar -zxf /opt/zookeeper-3.5.6.tar.gz -C /opt && \
     docktool filedel --dir=/opt/zookeeper -p=*.txt -p=*.html
 ```
 
-Remember! if you want to delete a directory, pattern must end with "/".
+**Remember!** if you want to delete a directory, pattern must end with "/".

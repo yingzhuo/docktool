@@ -43,7 +43,7 @@ docktool filedel --dir=/my/dir --delete-empty-dir`
 				Value:       &cnf.FiledelPatterns,
 			}, {
 				Name:          "delete-empty-dir",
-				Usage:         "delete empty dir at last",
+				Usage:         "delete empty dirs at last",
 				DefValue:      "false",
 				NoOptDefValue: "true",
 				Value:         &cnf.FiledelDelEmptyDir,
