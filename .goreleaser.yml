@@ -34,7 +34,7 @@ archives:
       386: i386
       amd64: amd64
 
-    name_template: "{{ .Binary }}-{{ .Version }}-{{ .Os }}-{{ .Arch }}"
+    name_template: "{{.Binary}}-{{.Os}}-{{.Arch}}-{{.Version}}"
 
     format: binary
 
