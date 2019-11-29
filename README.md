@@ -60,6 +60,8 @@ gpg --verify docktool-windows-amd64-v1.1.x.exe.asc docktool-windows-amd64-v1.1.x
 gpg --verify docktool-linux-amd64-v1.1.x.asc docktool-linux-amd64-v1.1.x
 ```
 
+author 's GPG fingerprint is: `3825 E69D 2277 CFA0 95F9  AA45 6B11 FB7F E9EC A55D`
+
 #### On docker image
 
 also, you can install it on your docker image. for example:
