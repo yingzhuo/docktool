@@ -1,5 +1,5 @@
 TIMESTAMP  	:= $(shell /bin/date "+%F %T")
-VERSION		:= v1.1.1
+VERSION		:= latest
 NAME		:= docktool
 LDFLAGS		:= -s -w \
 			   -X 'main.BuildVersion=$(VERSION)' \
@@ -11,18 +11,21 @@ LDFLAGS		:= -s -w \
 
 fmt:
 	@go fmt ./...
-	@go mod tidy
 
 clean:
 	@rm -rf $(CURDIR)/_bin &> /dev/null
 
-build: clean
-	CGO_ENABLED=0 GOOS=linux   GOARCH=amd64 go build -a -installsuffix cgo -ldflags "$(LDFLAGS)" -o $(CURDIR)/_bin/$(NAME)-linux-amd64-$(VERSION)
-	CGO_ENABLED=0 GOOS=darwin  GOARCH=amd64 go build -a -installsuffix cgo -ldflags "$(LDFLAGS)" -o $(CURDIR)/_bin/$(NAME)-darwin-amd64-$(VERSION)
-	CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -a -installsuffix cgo -ldflags "$(LDFLAGS)" -o $(CURDIR)/_bin/$(NAME)-windows-amd64-$(VERSION).exe
-	gpg --output $(CURDIR)/_bin/$(NAME)-linux-amd64-$(VERSION).asc       --armor --detach-sign $(CURDIR)/_bin/$(NAME)-linux-amd64-$(VERSION)
-	gpg --output $(CURDIR)/_bin/$(NAME)-darwin-amd64-$(VERSION).asc      --armor --detach-sign $(CURDIR)/_bin/$(NAME)-darwin-amd64-$(VERSION)
-	gpg --output $(CURDIR)/_bin/$(NAME)-windows-amd64-$(VERSION).exe.asc --armor --detach-sign $(CURDIR)/_bin/$(NAME)-windows-amd64-$(VERSION).exe
+release-dryrun: fmt
+	BuildGitBranch=$(shell git describe --all) \
+	 	BuildGitRev=$(shell git rev-list --count HEAD) \
+	 	BuildGitCommit=$(shell git rev-parse HEAD) \
+	 	goreleaser release --skip-publish --snapshot --rm-dist
+
+release:
+	BuildGitBranch=$(shell git describe --all) \
+	 	BuildGitRev=$(shell git rev-list --count HEAD) \
+	 	BuildGitCommit=$(shell git rev-parse HEAD) \
+		goreleaser release --rm-dist
 
 install:
 	CGO_ENABLED=0 GOOS=linux  GOARCH=amd64 sudo go build -a -installsuffix cgo -ldflags "$(LDFLAGS)" -o /usr/local/bin/$(NAME)
@@ -31,4 +34,4 @@ install:
 uninstall:
 	@sudo rm -rf /usr/local/bin/$(NAME) &> /dev/null
 
-.PHONY: fmt clean build install uninstall
+.PHONY: fmt clean release-dryrun release install uninstall

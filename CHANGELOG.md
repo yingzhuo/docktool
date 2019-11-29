@@ -1,5 +1,8 @@
+## v1.1.2
+-- **[UPDATE]** Add goreleaser support
+
 ## v1.1.1
-- **[NEW]** add new flag for sub command `filedel`
+- **[NEW]** Add new flag for sub command `filedel`
 
 ## v1.1.0
 - **[BUG FIX]** Fix some bugs

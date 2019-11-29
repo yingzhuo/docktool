@@ -79,7 +79,7 @@ func ActionFiledel(_ *cli.Context) {
 		w := jfile.FileWalker{
 			Start: startDir,
 			OnDir: func(dirname string) {
-				if jfile.IsDirExists(dirname ) && isEmptyDir(dirname) {
+				if jfile.IsDirExists(dirname) && isEmptyDir(dirname) {
 					_ = jfile.RemoveFileOrDir(dirname)
 				}
 			},
