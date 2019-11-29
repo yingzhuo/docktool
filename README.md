@@ -39,14 +39,14 @@ Run 'docktool COMMAND --help' for more information on a command.
 if you're using linux or macOS, you can install this tool by `curl` or `wget`.
 
 ```bash
-VERSION=v1.1.x
+VERSION=1.1.x
 
 # linux
-sudo curl -fsSL "https://github.com/yingzhuo/docktool/releases/download/$VERSION/docktool-linux-amd64-$VERSION" -o /usr/local/bin/docktool
+sudo curl -fsSL "https://github.com/yingzhuo/docktool/releases/download/v$VERSION/docktool-linux-amd64-$VERSION" -o /usr/local/bin/docktool
 sudo chmod +x /usr/local/bin/docktool
 
 # macOS
-sudo curl -fsSL "https://github.com/yingzhuo/docktool/releases/download/$VERSION/docktool-darwin-amd64-$VERSION" -o /usr/local/bin/docktool
+sudo curl -fsSL "https://github.com/yingzhuo/docktool/releases/download/v$VERSION/docktool-darwin-amd64-$VERSION" -o /usr/local/bin/docktool
 sudo chmod +x /usr/local/bin/docktool
 ```
 
@@ -55,9 +55,9 @@ if you're using windows, you can download it from [release page](https://github.
 you're able to verify the binary with GPG. for example:
 
 ```
-gpg --verify docktool-darwin-amd64-v1.1.x.asc docktool-darwin-amd64-v1.1.x
-gpg --verify docktool-windows-amd64-v1.1.x.exe.asc docktool-windows-amd64-v1.1.x.exe
-gpg --verify docktool-linux-amd64-v1.1.x.asc docktool-linux-amd64-v1.1.x
+gpg --verify docktool-darwin-amd64-1.1.x.asc docktool-darwin-amd64-1.1.x
+gpg --verify docktool-windows-amd64-1.1.x.exe.asc docktool-windows-amd64-1.1.x.exe
+gpg --verify docktool-linux-amd64-1.1.x.asc docktool-linux-amd64-1.1.x
 ```
 
 author 's GPG fingerprint is: `3825 E69D 2277 CFA0 95F9  AA45 6B11 FB7F E9EC A55D`
@@ -69,9 +69,9 @@ also, you can install it on your docker image. for example:
 ```dockerfile
 FROM busybox
 
-ARG VERSION=v1.1.x
+ARG VERSION=1.1.x
 
-RUN wget https://github.com/yingzhuo/docktool/releases/download/$DOCKTOOL_VERSION/docktool-linux-amd64-$DOCKTOOL_VERSION -O /bin/docktool && \
+RUN wget https://github.com/yingzhuo/docktool/releases/download/v$DOCKTOOL_VERSION/docktool-linux-amd64-$DOCKTOOL_VERSION -O /bin/docktool && \
     chmod +x /bin/docktool
 ```
 
