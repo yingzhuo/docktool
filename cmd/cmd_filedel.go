@@ -16,10 +16,10 @@ import (
 
 func NewCommandFiledel() *cli.Command {
 
-	examples := `docktool filedel --dir=/my/dir -p=*.yml -p=*yaml
-docktool filedel --dir=/my/dir -p=data[0-9].csv
-docktool filedel --dir=/my/dir -p=*.txt -p=*.md -p=LICENSE
-docktool filedel --dir=/my/dir -p=sub-dir-*/
+	examples := `docktool filedel --dir=/my/dir -p='*.yml' -p='*yaml'
+docktool filedel --dir=/my/dir -p='data[0-9].csv'
+docktool filedel --dir=/my/dir -p='*.txt' -p='*.md' -p=LICENSE
+docktool filedel --dir=/my/dir -p='sub-dir-*/'
 docktool filedel --dir=/my/dir --delete-empty-dir`
 
 	return &cli.Command{
@@ -31,10 +31,12 @@ docktool filedel --dir=/my/dir --delete-empty-dir`
 		SeeAlso:     "https://github.com/yingzhuo/docktool/tree/master/.github/filedel.md",
 		Flags: []*cli.Flag{
 			{
-				Name:        "dir",
-				Usage:       "start dir",
-				Placeholder: "<dir>",
-				Value:       &cnf.FiledelDir,
+				Name:          "dir",
+				Usage:         "start dir",
+				Placeholder:   "<dir>",
+				DefValue:      ".",
+				NoOptDefValue: ".",
+				Value:         &cnf.FiledelDir,
 			},
 			{
 				Name:        "p, pattern",
@@ -51,5 +53,4 @@ docktool filedel --dir=/my/dir --delete-empty-dir`
 		},
 		Action: ActionFiledel,
 	}
-
 }

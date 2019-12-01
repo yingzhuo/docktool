@@ -10,16 +10,16 @@ DESCRIPTION:
    delete files/dirs using wildcard
 
 OPTIONS:
-       --dir <dir>            start dir
+       --dir [<dir>]          start dir (default: .)
    -p, --pattern <wildcard>   wildcard pattern, can be passed multiple times
        --delete-empty-dir     delete empty dirs at last (default: false)
        --help                 print this usage
 
 EXAMPLES:
-   docktool filedel --dir=/my/dir -p=*.yml -p=*yaml
-   docktool filedel --dir=/my/dir -p=data[0-9].csv
-   docktool filedel --dir=/my/dir -p=*.txt -p=*.md -p=LICENSE
-   docktool filedel --dir=/my/dir -p=sub-dir-*/
+   docktool filedel --dir=/my/dir -p='*.yml' -p='*yaml'
+   docktool filedel --dir=/my/dir -p='data[0-9].csv'
+   docktool filedel --dir=/my/dir -p='*.txt' -p='*.md' -p=LICENSE
+   docktool filedel --dir=/my/dir -p='sub-dir-*/'
    docktool filedel --dir=/my/dir --delete-empty-dir
 
 SEE ALSO:
