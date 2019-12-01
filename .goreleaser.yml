@@ -36,7 +36,7 @@ archives:
 
     name_template: "{{.Binary}}-{{.Os}}-{{.Arch}}-{{.Version}}"
 
-    format: binary
+    format: tar.gz
 
     format_overrides:
       - goos: windows

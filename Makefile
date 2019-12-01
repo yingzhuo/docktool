@@ -11,11 +11,12 @@ LDFLAGS		:= -s -w \
 
 fmt:
 	@go fmt ./...
+	@go mod tidy
 
 clean:
 	@rm -rf $(CURDIR)/_bin &> /dev/null
 
-release-dryrun: fmt
+release-dryrun:
 	BuildGitBranch=$(shell git describe --all) \
 	 	BuildGitRev=$(shell git rev-list --count HEAD) \
 	 	BuildGitCommit=$(shell git rev-parse HEAD) \
