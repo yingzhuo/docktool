@@ -15,6 +15,7 @@ import (
 	"strings"
 	"text/template"
 
+	jio "github.com/yingzhuo/jing/io"
 	jstr "github.com/yingzhuo/jing/str"
 )
 
@@ -84,6 +85,9 @@ func TxtFuncMap() template.FuncMap {
 	f["sha384"] = jstr.SHA384
 	f["sha512"] = jstr.SHA512
 
+	// include
+	f["include"] = include
+
 	return f
 }
 
@@ -150,4 +154,13 @@ func cat(s string, ss ...string) string {
 		sb.WriteString(it)
 	}
 	return sb.String()
+}
+
+func include(filename string) string {
+	defer func() {
+		if r := recover(); r != nil {
+		}
+	}()
+
+	return jio.LoadFileString(filename)
 }

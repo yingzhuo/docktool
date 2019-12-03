@@ -16,9 +16,4 @@ _bin/
 # --------------------------------------
 # test
 # --------------------------------------
-docktool/
-**/filegen.tmpl
-**/filegen.in.json
-**/filegen.in.yaml
-**/filegen.in.yml
-**/filegen.in.toml
+.test/
