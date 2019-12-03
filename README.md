@@ -46,7 +46,9 @@ also, you can install it on your docker image. for example:
 
 ```dockerfile
 FROM busybox
+
 ARG DOCKTOOL_VERSION=1.1.x
+
 RUN wget https://github.com/yingzhuo/docktool/releases/download/v${DOCKTOOL_VERSION}/docktool-linux-amd64-${DOCKTOOL_VERSION}.tar.gz -O ./docktool.tar.gz && \
     mkdir -p ./docktool/ && \
     tar -zxf ./docktool.tar.gz -C ./docktool/ && \

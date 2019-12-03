@@ -29,7 +29,7 @@ release:
 		goreleaser release --rm-dist
 
 install:
-	CGO_ENABLED=0 GOOS=linux  GOARCH=amd64 sudo go build -a -installsuffix cgo -ldflags "$(LDFLAGS)" -o /usr/local/bin/$(NAME)
+	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 sudo go build -a -installsuffix cgo -ldflags "$(LDFLAGS)" -o /usr/local/bin/$(NAME)
 	@sudo chmod a+x /usr/local/bin/$(NAME)
 
 uninstall:
