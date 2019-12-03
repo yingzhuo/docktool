@@ -17,10 +17,12 @@ var TestEnvNames jstr.StringSlice
 var TestFilenames jstr.StringSlice
 var TestDirnames jstr.StringSlice
 var TestTcpAddrs jstr.StringSlice
+var TestFailExitCode int
 
 func init() {
 	TestEnvNames = *jstr.NewStringSlice()
 	TestFilenames = *jstr.NewStringSlice()
 	TestDirnames = *jstr.NewStringSlice()
 	TestTcpAddrs = *jstr.NewStringSlice()
+	TestFailExitCode = 1
 }

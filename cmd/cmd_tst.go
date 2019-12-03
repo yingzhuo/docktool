@@ -49,9 +49,15 @@ docktool test --tcp="localhost:8080"`
 				Usage:       "tcp addr for test, can be passed multiple times",
 				Placeholder: "<tcp-addr>",
 				Value:       &cnf.TestTcpAddrs,
+			}, {
+				Name:          "exit",
+				Usage:         "exit code when test fail",
+				Placeholder:   "<exit-code>",
+				Value:         &cnf.TestFailExitCode,
+				DefValue:      "1",
+				NoOptDefValue: "1",
 			},
 		},
-		Commands: nil,
-		Action:   ActionTest,
+		Action: ActionTest,
 	}
 }
