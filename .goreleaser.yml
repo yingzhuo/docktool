@@ -1,6 +1,6 @@
 # documentation at http://goreleaser.com
 
-dist: ./_bin
+dist: ./_dist
 
 before:
   hooks:
@@ -69,21 +69,22 @@ changelog:
     exclude:
       - '^docs:'
       - '^test:'
+      - '^typo:'
 
-dockers:
-  - dockerfile: ./Dockerfile
-
-    goos: linux
-
-    goarch: amd64
-
-    image_templates:
-      - "yingzhuo/docktool:latest"
-      - "yingzhuo/docktool:{{.Tag}}"
-
-    build_flag_templates:
-      - "--label=org.label-schema.schema-version=1.0"
-      - "--label=org.label-schema.version={{.Version}}"
-      - "--label=org.label-schema.name={{.ProjectName}}"
-
-    skip_push: true
+#dockers:
+#  - dockerfile: ./Dockerfile
+#
+#    goos: linux
+#
+#    goarch: amd64
+#
+#    image_templates:
+#      - "yingzhuo/docktool:latest"
+#      - "yingzhuo/docktool:{{.Tag}}"
+#
+#    build_flag_templates:
+#      - "--label=org.label-schema.schema-version=1.0"
+#      - "--label=org.label-schema.version={{.Version}}"
+#      - "--label=org.label-schema.name={{.ProjectName}}"
+#
+#    skip_push: true
