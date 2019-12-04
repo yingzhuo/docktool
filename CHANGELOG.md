@@ -1,5 +1,9 @@
+## v1.1.3
+- **[NEW]** Build project by new tool `goreleaser`
+- **[UPDATE]** Add some flag support
+
 ## v1.1.2
--- **[UPDATE]** Add goreleaser support
+- **[UPDATE]** Add goreleaser support
 
 ## v1.1.1
 - **[NEW]** Add new flag for sub command `filedel`
