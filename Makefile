@@ -14,7 +14,7 @@ fmt:
 	@go mod tidy
 
 clean:
-	@rm -rf $(CURDIR)/.dist &> /dev/null
+	@rm -rf $(CURDIR)/_dist &> /dev/null
 
 release-dryrun:
 	BuildGitBranch=$(shell git describe --all) \
