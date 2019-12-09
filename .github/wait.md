@@ -27,7 +27,6 @@ EXAMPLES:
 SEE ALSO:
    https://github.com/yingzhuo/docktool/tree/master/.github/wait.md
 
-
 ```
 
 ### Examples:

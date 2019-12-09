@@ -14,7 +14,7 @@ OPTIONS:
    -f, --file <file-name>   file name for test, can be passed multiple times
    -d, --dir <dir-name>     dir name for test, can be passed multiple times
        --tcp <tcp-addr>     tcp addr for test, can be passed multiple times
-       --help               print this usage
+   -h, --help               print this usage
 
 EXAMPLES:
    docktool test --env="JAVA_HOME"

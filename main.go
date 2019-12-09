@@ -35,7 +35,7 @@ func main() {
 	// 基本信息
 	app := cli.NewApp()
 	app.Name = "docktool"
-	app.Usage = "tools for docker container"
+	app.Usage = ""
 	app.Version = BuildVersion
 	app.Authors = `应卓 <yingzhor@gmail.com>`
 

@@ -13,7 +13,7 @@ OPTIONS:
        --dir [<dir>]          start dir (default: .)
    -p, --pattern <wildcard>   wildcard pattern, can be passed multiple times
        --delete-empty-dir     delete empty dirs at last (default: false)
-       --help                 print this usage
+   -h, --help                 print this usage
 
 EXAMPLES:
    docktool filedel --dir=/my/dir -p='*.yml' -p='*yaml'

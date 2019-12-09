@@ -2,7 +2,7 @@
 
 ```
 NAME:
-   docktool - tools for docker container
+   docktool
 
 USAGE:
    docktool [global options] COMMAND [command options] [arguments ...]
@@ -22,8 +22,8 @@ COMMANDS:
 
 GLOBALS OPTIONS:
    -q, --quiet     quiet mode (default: false)
-       --help      print this usage
-       --version   print version information
+   -h, --help      print this usage
+   -v, --version   print version information
 
 SEE ALSO:
    https://github.com/yingzhuo/docktool

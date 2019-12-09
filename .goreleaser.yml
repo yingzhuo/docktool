@@ -20,7 +20,6 @@ builds:
     goos:
       - darwin
       - linux
-      - windows
 
     goarch:
       - amd64
@@ -38,9 +37,9 @@ archives:
 
     format: tar.gz
 
-    format_overrides:
-      - goos: windows
-        format: zip
+#    format_overrides:
+#      - goos: windows
+#        format: zip
 
     files:
       - "LICENSE*"

@@ -20,7 +20,7 @@ OPTIONS:
    -o, --output <file>             file for output
    -a, --append                    append output to file
        --perm <value>              perm of output file (default: 0660)
-       --help                      print this usage
+   -h, --help                      print this usage
 
 EXAMPLES:
    docktool filegen -t ./filegen.tmpl -v name=bill

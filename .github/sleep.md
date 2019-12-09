@@ -10,7 +10,7 @@ DESCRIPTION:
    make current thread sleep
 
 OPTIONS:
-   --help   print this usage
+   -h, --help   print this usage
 
 EXAMPLES:
    docktool sleep
