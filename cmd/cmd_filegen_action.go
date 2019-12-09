@@ -45,6 +45,12 @@ func ActionFilegen(_ *cli.Context) {
 }
 
 func initConfig() {
+
+	// "-" means "stdout"
+	if cnf.FilegenOutputFile == "-" {
+		cnf.FilegenOutputFile = ""
+	}
+
 	cnf.FilegenTemplateFile = jfile.BetterFilename(cnf.FilegenTemplateFile)
 	cnf.FilegenYamlFile = jfile.BetterFilename(cnf.FilegenYamlFile)
 	cnf.FilegenJsonFile = jfile.BetterFilename(cnf.FilegenJsonFile)
