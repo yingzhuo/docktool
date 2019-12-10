@@ -58,6 +58,13 @@ func main() {
 			NoOptDefValue: "true",
 			IsBool:        true,
 			Value:         &cnf.GlobalQuietMode,
+		}, {
+			Name:          "debug",
+			DefValue:      "false",
+			NoOptDefValue: "true",
+			IsBool:        true,
+			Value:         &cnf.GlobalDebugMode,
+			Hidden:        true,
 		},
 	}
 

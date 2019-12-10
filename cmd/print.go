@@ -38,3 +38,27 @@ func Printf(format string, a ...interface{}) {
 	}
 	fmt.Printf(format, a...)
 }
+
+// print (debug)
+// ---------------------
+
+func Debug(a ...interface{}) {
+	if !cnf.GlobalDebugMode {
+		return
+	}
+	fmt.Print(a...)
+}
+
+func Debugln(a ...interface{}) {
+	if !cnf.GlobalDebugMode {
+		return
+	}
+	fmt.Println(a...)
+}
+
+func Debugf(format string, a ...interface{}) {
+	if !cnf.GlobalDebugMode {
+		return
+	}
+	fmt.Printf(format, a...)
+}

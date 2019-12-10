@@ -11,3 +11,6 @@ package cnf
 
 // 安静模式
 var GlobalQuietMode bool
+
+// 调试模式
+var GlobalDebugMode bool
