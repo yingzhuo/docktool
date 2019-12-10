@@ -7,7 +7,7 @@ before:
     - go mod tidy
 
 builds:
-  - id: default
+  - id: ""
 
     env:
       - CGO_ENABLED=0
@@ -15,11 +15,18 @@ builds:
     main: .
 
     ldflags:
-      - -s -w -X main.BuildVersion={{.Version}} -X main.BuildGitBranch={{.Env.BuildGitBranch}} -X main.BuildGitRev={{.Env.BuildGitRev}} -X main.BuildGitCommit={{.Env.BuildGitCommit}} -X main.BuildDate={{.Date}} -X main.BuildBy=goreleaser
+      - -s -w
+        -X main.BuildVersion={{.Version}}
+        -X main.BuildGitBranch={{.Env.BuildGitBranch}}
+        -X main.BuildGitRev={{.Env.BuildGitRev}}
+        -X main.BuildGitCommit={{.Env.BuildGitCommit}}
+        -X main.BuildDate={{.Date}}
+        -X main.BuildBy=goreleaser
 
     goos:
-      - darwin
       - linux
+      - darwin
+      - windows
 
     goarch:
       - amd64
@@ -37,9 +44,9 @@ archives:
 
     format: tar.gz
 
-#    format_overrides:
-#      - goos: windows
-#        format: zip
+    format_overrides:
+      - goos: windows
+        format: zip
 
     files:
       - "LICENSE*"

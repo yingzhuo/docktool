@@ -16,13 +16,13 @@ fmt:
 clean:
 	@rm -rf $(CURDIR)/_dist &> /dev/null
 
-release-dryrun:
+release-dryrun: clean
 	BuildGitBranch=$(shell git describe --all) \
 	 	BuildGitRev=$(shell git rev-list --count HEAD) \
 	 	BuildGitCommit=$(shell git rev-parse HEAD) \
 	 	goreleaser release --skip-publish --snapshot --rm-dist
 
-release:
+release: clean
 	BuildGitBranch=$(shell git describe --all) \
 	 	BuildGitRev=$(shell git rev-list --count HEAD) \
 	 	BuildGitCommit=$(shell git rev-parse HEAD) \
