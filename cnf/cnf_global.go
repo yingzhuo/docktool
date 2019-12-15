@@ -13,4 +13,4 @@ package cnf
 var GlobalQuietMode bool
 
 // 调试模式
-var GlobalDebugMode bool
+var GlobalDebugMode bool // hidden

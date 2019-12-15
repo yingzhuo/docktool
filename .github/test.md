@@ -10,11 +10,12 @@ DESCRIPTION:
    test env/file/tcp
 
 OPTIONS:
-   -e, --env <env-name>     env name for test, can be passed multiple times
-   -f, --file <file-name>   file name for test, can be passed multiple times
-   -d, --dir <dir-name>     dir name for test, can be passed multiple times
-       --tcp <tcp-addr>     tcp addr for test, can be passed multiple times
-   -h, --help               print this usage
+   -e, --env <env-name>       env name for test, can be passed multiple times
+   -f, --file <file-name>     file name for test, can be passed multiple times
+   -d, --dir <dir-name>       dir name for test, can be passed multiple times
+       --tcp <tcp-addr>       tcp addr for test, can be passed multiple times
+       --exit [<exit-code>]   exit code when test fail (default: 1)
+   -h, --help                 print this usage
 
 EXAMPLES:
    docktool test --env="JAVA_HOME"

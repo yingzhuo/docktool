@@ -23,9 +23,9 @@ docktool test --tcp="localhost:8080"`
 
 	return &cli.Command{
 		Name:        "test",
-		Usage:       "test env/file/tcp",
+		Usage:       "test env/file/dir/tcp",
 		UsageText:   "[options]",
-		Description: "test env/file/tcp",
+		Description: "test env/file/dir/tcp",
 		Examples:    examples,
 		SeeAlso:     "https://github.com/yingzhuo/docktool/tree/master/.github/test.md",
 		Flags: []*cli.Flag{
