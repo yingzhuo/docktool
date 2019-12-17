@@ -1,13 +1,13 @@
 
 ```
 NAME:
-   docktool test - test env/file/tcp
+   docktool test - test env/file/dir/tcp
 
 USAGE:
    docktool test [options]
 
 DESCRIPTION:
-   test env/file/tcp
+   test env/file/dir/tcp
 
 OPTIONS:
    -e, --env <env-name>       env name for test, can be passed multiple times

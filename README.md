@@ -18,7 +18,7 @@ COMMANDS:
    filedel   delete files/dirs using wildcard
    wait      wait until tcp reachable or timeout
    sleep     make current thread sleep
-   test      test env/file/tcp
+   test      test env/file/dir/tcp
 
 GLOBALS OPTIONS:
    -q, --quiet     quiet mode (default: false)

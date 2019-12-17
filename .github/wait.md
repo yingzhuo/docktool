@@ -14,7 +14,7 @@ OPTIONS:
    -w, --wait <addr>                     addr to wait, can be passed multiple times
    -t, --timeout <time>                  timeout
        --logic <logic>                   logic of testing (ALL | ANY) (default: ALL)
-       --help                            print this usage
+   -h, --help                            print this usage
 
 EXAMPLES:
    docktool wait -w localhost:3306 -w localhost:6379
