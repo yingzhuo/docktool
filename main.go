@@ -91,6 +91,7 @@ func main() {
 		cmd.NewCommandFiledel(),
 		cmd.NewCommandWait(),
 		cmd.NewCommandSleep(),
+		cmd.NewCommandSecret(),
 		cmd.NewCommandTest(),
 	}
 
