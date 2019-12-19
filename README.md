@@ -18,6 +18,7 @@ COMMANDS:
    filedel   delete files/dirs using wildcard
    wait      wait until tcp reachable or timeout
    sleep     make current thread sleep
+   secret    encode/decode a string
    test      test env/file/dir/tcp
 
 GLOBALS OPTIONS:
@@ -71,6 +72,7 @@ make install
 * [filedel](./.github/filedel.md)
 * [wait](./.github/wait.md)
 * [sleep](./.github/sleep.md)
+* [secret](./.github/secret.md)
 * [test](./.github/test.md)
 
 ### Contributing

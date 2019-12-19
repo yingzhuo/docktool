@@ -60,6 +60,54 @@ func ActionSecretMD4(c *cli.Context) {
 	}
 }
 
+func ActionSecretSHA1(c *cli.Context) {
+	s := getString(c)
+	Debugf("raw: %v\n", s)
+	s = jstr.SHA1(s)
+
+	if cnf.SecretNoNewLine {
+		Printf("%s", s)
+	} else {
+		Printf("%s\n", s)
+	}
+}
+
+func ActionSecretSHA256(c *cli.Context) {
+	s := getString(c)
+	Debugf("raw: %v\n", s)
+	s = jstr.SHA256(s)
+
+	if cnf.SecretNoNewLine {
+		Printf("%s", s)
+	} else {
+		Printf("%s\n", s)
+	}
+}
+
+func ActionSecretSHA512(c *cli.Context) {
+	s := getString(c)
+	Debugf("raw: %v\n", s)
+	s = jstr.SHA512(s)
+
+	if cnf.SecretNoNewLine {
+		Printf("%s", s)
+	} else {
+		Printf("%s\n", s)
+	}
+}
+
+func ActionSecretSHA384(c *cli.Context) {
+	s := getString(c)
+	Debugf("raw: %v\n", s)
+	s = jstr.SHA384(s)
+
+	if cnf.SecretNoNewLine {
+		Printf("%s", s)
+	} else {
+		Printf("%s\n", s)
+	}
+}
+
 func getString(c *cli.Context) string {
 
 	if cnf.SecretStdin {
