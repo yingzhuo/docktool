@@ -19,6 +19,7 @@ COMMANDS:
    wait      wait until tcp reachable or timeout
    sleep     make current thread sleep
    secret    encode/decode a string
+   uuid      create random uuid
    test      test env/file/dir/tcp
 
 GLOBALS OPTIONS:

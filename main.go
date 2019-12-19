@@ -92,6 +92,7 @@ func main() {
 		cmd.NewCommandWait(),
 		cmd.NewCommandSleep(),
 		cmd.NewCommandSecret(),
+		cmd.NewCommandUUID(),
 		cmd.NewCommandTest(),
 	}
 

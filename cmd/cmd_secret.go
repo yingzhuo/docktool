@@ -29,6 +29,7 @@ docktool secret sha384 "secret"`
 	return &cli.Command{
 		Name:        "secret",
 		Usage:       "encode/decode a string",
+		UsageText:   "[sub-commands]",
 		Description: "encode/decode a string",
 		Examples:    examples,
 		SeeAlso:     "https://github.com/yingzhuo/docktool/tree/master/.github/secret.md", // TODO
@@ -183,5 +184,4 @@ docktool secret sha384 "secret"`
 			},
 		},
 	}
-
 }
