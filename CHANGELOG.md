@@ -1,3 +1,10 @@
+## v1.1.5
+- **[NEW]** Add new sub-command `secret`
+- **[NEW]** Add new sub-command `uuid`
+
+## v1.1.4
+- **[BUG FIX]** Fix some bug
+
 ## v1.1.3
 - **[NEW]** Build project by new tool `goreleaser`
 - **[UPDATE]** Add some flag support

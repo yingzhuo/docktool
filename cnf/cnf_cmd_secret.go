@@ -11,5 +11,5 @@ package cnf
 
 var SecretStdin bool
 var SecretNoNewLine bool
-
 var SecretBase64Decode bool
+var SecretBcryptChecking bool

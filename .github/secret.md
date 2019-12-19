@@ -31,6 +31,8 @@ EXAMPLES:
    docktool secret sha256 "secret"
    docktool secret sha512 "secret"
    docktool secret sha384 "secret"
+   docktool secret bcrypt 'hello'
+   docktool secret bcrypt --check 'hello' '$2a$10$tTD.tJFkdsJR67V6YQYinOAbcZEROfbIjz2wInYftX.DRhOV0OBe2'
 
 SEE ALSO:
    https://github.com/yingzhuo/docktool/tree/master/.github/secret.md
