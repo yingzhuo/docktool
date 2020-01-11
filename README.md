@@ -47,24 +47,9 @@ Author 's GPG fingerprint is: `3825 E69D 2277 CFA0 95F9  AA45 6B11 FB7F E9EC A55
 also, you can install it on your docker image. Two examples:
 
 ```dockerfile
-# Example 1
 FROM busybox
 
-ARG DOCKTOOL_VERSION=1.1.x
-
-RUN wget https://github.com/yingzhuo/docktool/releases/download/v${DOCKTOOL_VERSION}/docktool-linux-amd64-${DOCKTOOL_VERSION}.tar.gz -O ./docktool.tar.gz && \
-    mkdir -p ./docktool/ && \
-    tar -zxf ./docktool.tar.gz -C ./docktool/ && \
-    cp ./docktool/docktool /bin/docktool && \
-    chmod +x /bin/docktool && \
-    rm -rf ./docktool ./docktool.tar.gz
-```
-
-```dockerfile
-# Example 2
-FROM busybox
-
-COPY --from=quay.io/yingzhuo/docktool /bin/docktool /bin/docktool
+COPY --from=yingzhuo/docktool /bin/docktool /bin/docktool
 ```
 
 #### Build it on your computer
@@ -82,6 +67,7 @@ make install
 * [wait](./.github/wait.md)
 * [sleep](./.github/sleep.md)
 * [secret](./.github/secret.md)
+* [uuid](./.github/uuid.md)
 * [test](./.github/test.md)
 
 ### Contributing
