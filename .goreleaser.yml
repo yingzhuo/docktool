@@ -87,6 +87,8 @@ dockers:
     image_templates:
       - "quay.io/yingzhuo/docktool:latest"
       - "quay.io/yingzhuo/docktool:{{.Tag}}"
+      - "yingzhuo/docktool:latest"
+      - "yingzhuo/docktool:{{.Tag}}"
 
     build_flag_templates:
       - "--label=org.label-schema.schema-version=1.0"
