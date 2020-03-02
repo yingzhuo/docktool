@@ -1,6 +1,6 @@
 FROM busybox:1.31.1
 
-MAINTAINER 应卓 <yingzhor@gmail.com>
+LABEL maintainer="应卓"
 
 COPY docktool /bin/docktool
 

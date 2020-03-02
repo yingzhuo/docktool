@@ -1,3 +1,9 @@
+## v1.1.7
+- **[UPDATE]** Update Golang to 1.14
+
+## v1.1.6
+- **[BUG FIX]** Fix some bug
+
 ## v1.1.5
 - **[NEW]** Add new sub-command `secret`
 - **[NEW]** Add new sub-command `uuid`
