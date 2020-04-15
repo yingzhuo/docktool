@@ -8,7 +8,7 @@ USAGE:
    docktool [global options] COMMAND [command options] [arguments ...]
 
 VERSION:
-   v1.1.x
+   v1.2.x
 
 AUTHORS:
    应卓 <yingzhor@gmail.com>
@@ -34,22 +34,14 @@ Run 'docktool COMMAND --help' for more information on a command.
 
 ```
 
-### Installing
-
-#### On your computer
-
-You can download it from [release page](https://github.com/yingzhuo/docktool/releases) and you're able to verify the archives with GPG.
-
-Author 's GPG fingerprint is: `3825 E69D 2277 CFA0 95F9  AA45 6B11 FB7F E9EC A55D`
-
-#### On docker image
+### Installing on docker image
 
 also, you can install it on your docker image. Two examples:
 
 ```dockerfile
 FROM busybox
 
-COPY --from=yingzhuo/docktool /bin/docktool /bin/docktool
+COPY --from=yingzhuo/docktool:latest /bin/docktool /bin/docktool
 ```
 
 #### Build it on your computer

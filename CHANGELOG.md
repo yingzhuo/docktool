@@ -1,5 +1,8 @@
-## v1.1.8
+## v1.2.0
 - **[UPDATE]** Update Golang to 1.14.2
+
+## v1.1.8
+- **[UPDATE]** Update Golang to 1.14.1
 
 ## v1.1.7
 - **[UPDATE]** Update Golang to 1.14

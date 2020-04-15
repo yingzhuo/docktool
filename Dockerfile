@@ -4,4 +4,4 @@ LABEL maintainer="应卓 <yingzhor@gmail.com>"
 
 COPY docktool /bin/docktool
 
-CMD ["docktool", "-v"]
+ENTRYPOINT ["docktool", "-h"]
