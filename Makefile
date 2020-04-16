@@ -17,7 +17,7 @@ clean:
 	@rm -rf $(CURDIR)/_dist &> /dev/null
 
 release: clean
-	CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -a -installsuffix cgo -ldflags "$(LDFLAGS)" -o $(CURDIR)/_dist/$(NAME)
+	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -installsuffix cgo -ldflags "$(LDFLAGS)" -o $(CURDIR)/_dist/$(NAME)
 	cp $(CURDIR)/Dockerfile $(CURDIR)/_dist
 	docker image build -t yingzhuo/$(NAME):$(VERSION) $(CURDIR)/_dist
 	docker image tag yingzhuo/$(NAME):$(VERSION) yingzhuo/$(NAME):latest
@@ -28,7 +28,17 @@ install:
 	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 sudo go build -a -installsuffix cgo -ldflags "$(LDFLAGS)" -o /usr/local/bin/$(NAME)
 	@sudo chmod a+x /usr/local/bin/$(NAME)
 
+build:
+	CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -a -installsuffix cgo -ldflags "$(LDFLAGS)" -o $(CURDIR)/_dist/$(NAME)-darwin-$(VERSION)
+	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -installsuffix cgo -ldflags "$(LDFLAGS)" -o $(CURDIR)/_dist/$(NAME)-linux-$(VERSION)
+	CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -a -installsuffix cgo -ldflags "$(LDFLAGS)" -o $(CURDIR)/_dist/$(NAME)-windows-$(VERSION).exe
+
 uninstall:
 	@sudo rm -rf /usr/local/bin/$(NAME) &> /dev/null
 
-.PHONY: fmt clean release install uninstall
+github: clean
+	@git add .
+	@git commit -m "$(TIMESTAMP)"
+	@git push
+
+.PHONY: fmt clean release install uninstall build github
