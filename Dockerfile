@@ -1,4 +1,4 @@
-FROM busybox:1.31.1
+FROM busybox:1.32.0
 
 LABEL maintainer="应卓 <yingzhor@gmail.com>"
 
